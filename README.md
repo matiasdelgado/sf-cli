@@ -33,6 +33,7 @@ USAGE
 * [`sf info`](#sf-info)
 * [`sf open`](#sf-open)
 * [`sf switch`](#sf-switch)
+* [`sf test`](#sf-test)
 
 ## `sf help [COMMAND]`
 
@@ -53,18 +54,14 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3
 
 ## `sf info`
 
-Describe the command here
+Display current scratch org url
 
 ```
 USAGE
   $ sf info
 
 OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
+  -m, --markdown  Generates MD code
 ```
 
 _See code: [src/commands/info.js](https://github.com/matiasdelgado/sf-cli/blob/v0.0.0/src/commands/info.js)_
@@ -96,4 +93,22 @@ OPTIONS
 ```
 
 _See code: [src/commands/switch.js](https://github.com/matiasdelgado/sf-cli/blob/v0.0.0/src/commands/switch.js)_
+
+## `sf test`
+
+Describe the command here
+
+```
+USAGE
+  $ sf test
+
+OPTIONS
+  -n, --name=name  name to print
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src/commands/test.js](https://github.com/matiasdelgado/sf-cli/blob/v0.0.0/src/commands/test.js)_
 <!-- commandsstop -->
