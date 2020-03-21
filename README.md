@@ -29,12 +29,28 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`sf code`](#sf-code)
 * [`sf help [COMMAND]`](#sf-help-command)
 * [`sf info`](#sf-info)
 * [`sf log`](#sf-log)
 * [`sf open`](#sf-open)
 * [`sf switch`](#sf-switch)
 * [`sf test`](#sf-test)
+
+## `sf code`
+
+Push/pull source code
+
+```
+USAGE
+  $ sf code
+
+OPTIONS
+  -l, --pull  Pull from scratch org
+  -p, --push  Push to scratch org
+```
+
+_See code: [src/commands/code.js](https://github.com/matiasdelgado/sf-cli/blob/v0.0.0/src/commands/code.js)_
 
 ## `sf help [COMMAND]`
 
@@ -69,18 +85,11 @@ _See code: [src/commands/info.js](https://github.com/matiasdelgado/sf-cli/blob/v
 
 ## `sf log`
 
-Describe the command here
+Show remote logs
 
 ```
 USAGE
   $ sf log
-
-OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
 ```
 
 _See code: [src/commands/log.js](https://github.com/matiasdelgado/sf-cli/blob/v0.0.0/src/commands/log.js)_
