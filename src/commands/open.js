@@ -15,9 +15,8 @@ class OpenCommand extends Command {
   }
 }
 
-OpenCommand.description = `
-Open a scratch org in the browser by username or by picking from the list of available orgs.
-`;
+OpenCommand.description =
+  'Open a scratch org in the browser by username or by picking from the list of available orgs.';
 
 OpenCommand.flags = {
   defaultOrg: flags.boolean({ char: 'd', description: 'Open default org' })

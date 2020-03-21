@@ -29,27 +29,9 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`sf hello`](#sf-hello)
 * [`sf help [COMMAND]`](#sf-help-command)
 * [`sf open`](#sf-open)
-
-## `sf hello`
-
-Describe the command here
-
-```
-USAGE
-  $ sf hello
-
-OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
-```
-
-_See code: [src/commands/hello.js](https://github.com/matiasdelgado/sf-cli/blob/v0.0.0/src/commands/hello.js)_
+* [`sf switch`](#sf-switch)
 
 ## `sf help [COMMAND]`
 
@@ -70,11 +52,28 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3
 
 ## `sf open`
 
-Describe the command here
+Open a scratch org in the browser by username or by picking from the list of available orgs.
 
 ```
 USAGE
   $ sf open
+
+OPTIONS
+  -d, --defaultOrg  Open default org
+
+DESCRIPTION
+  Open a scratch org in the browser by username or by picking from the list of available orgs.
+```
+
+_See code: [src/commands/open.js](https://github.com/matiasdelgado/sf-cli/blob/v0.0.0/src/commands/open.js)_
+
+## `sf switch`
+
+Describe the command here
+
+```
+USAGE
+  $ sf switch
 
 OPTIONS
   -n, --name=name  name to print
@@ -84,5 +83,5 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/open.js](https://github.com/matiasdelgado/sf-cli/blob/v0.0.0/src/commands/open.js)_
+_See code: [src/commands/switch.js](https://github.com/matiasdelgado/sf-cli/blob/v0.0.0/src/commands/switch.js)_
 <!-- commandsstop -->
