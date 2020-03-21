@@ -11,6 +11,7 @@
     "@oclif/command": "^1.5.19",
     "@oclif/config": "^1.14.0",
     "@oclif/plugin-help": "^2.2.3",
+    "inquirer": "^7.1.0",
     "prettier": "^1.19.1"
   },
   "devDependencies": {
