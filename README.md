@@ -31,6 +31,7 @@ USAGE
 <!-- commands -->
 * [`sf help [COMMAND]`](#sf-help-command)
 * [`sf info`](#sf-info)
+* [`sf log`](#sf-log)
 * [`sf open`](#sf-open)
 * [`sf switch`](#sf-switch)
 * [`sf test`](#sf-test)
@@ -66,6 +67,24 @@ OPTIONS
 
 _See code: [src/commands/info.js](https://github.com/matiasdelgado/sf-cli/blob/v0.0.0/src/commands/info.js)_
 
+## `sf log`
+
+Describe the command here
+
+```
+USAGE
+  $ sf log
+
+OPTIONS
+  -n, --name=name  name to print
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src/commands/log.js](https://github.com/matiasdelgado/sf-cli/blob/v0.0.0/src/commands/log.js)_
+
 ## `sf open`
 
 Open a scratch org in the browser by username or by picking from the list of available orgs.
@@ -96,18 +115,15 @@ _See code: [src/commands/switch.js](https://github.com/matiasdelgado/sf-cli/blob
 
 ## `sf test`
 
-Describe the command here
+Run tests by class or method name
 
 ```
 USAGE
   $ sf test
 
 OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
+  -c, --classname=classname  Run tests in class
+  -m, --method=method        Run test by method name
 ```
 
 _See code: [src/commands/test.js](https://github.com/matiasdelgado/sf-cli/blob/v0.0.0/src/commands/test.js)_
