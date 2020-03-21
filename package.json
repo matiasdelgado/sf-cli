@@ -10,7 +10,9 @@
   "dependencies": {
     "@oclif/command": "^1.5.19",
     "@oclif/config": "^1.14.0",
+    "@oclif/plugin-autocomplete": "^0.1.5",
     "@oclif/plugin-help": "^2.2.3",
+    "@oclif/plugin-not-found": "^1.2.3",
     "inquirer": "^7.1.0",
     "prettier": "^1.19.1"
   },
@@ -39,7 +41,9 @@
     "commands": "./src/commands",
     "bin": "sf",
     "plugins": [
-      "@oclif/plugin-help"
+      "@oclif/plugin-help",
+      "@oclif/plugin-autocomplete",
+      "@oclif/plugin-not-found"
     ]
   },
   "repository": "matiasdelgado/sf-cli",
