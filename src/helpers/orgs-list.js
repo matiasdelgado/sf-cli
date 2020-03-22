@@ -37,6 +37,7 @@ function getScratchOrgs() {
     if (stderr) {
       throw new Error(stderr);
     }
+
     const data = JSON.parse(stdout);
     return data.result.scratchOrgs.map(({ instanceUrl, isDefaultUsername, expirationDate, username }) => ({
       instanceUrl,
