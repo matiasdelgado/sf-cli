@@ -6,8 +6,7 @@ SFDX wrapper
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/sf.svg)](https://npmjs.org/package/sf)
 [![CircleCI](https://circleci.com/gh/matiasdelgado/sf-cli/tree/master.svg?style=shield)](https://circleci.com/gh/matiasdelgado/sf-cli/tree/master)
-[![Downloads/week](https://img.shields.io/npm/dw/sf.svg)](https://npmjs.org/package/sf)
-[![License](https://img.shields.io/npm/l/sf.svg)](https://github.com/matiasdelgado/sf-cli/blob/master/package.json)
+[![License](https://img.shields.io/npm/l/sf.svg)](https://github.com/matiasdelgado/sf-cli/blob/master/LICENSE)
 
 <!-- toc -->
 * [Usage](#usage)
