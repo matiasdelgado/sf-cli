@@ -22,10 +22,10 @@ function showInfo(markdown) {
 }
 
 function drawTable(username, password, instanceUrl, expirationDate) {
-  logger.info('\x1b[34m%s: \x1b[0m    %s', 'Username', username);
-  logger.info('\x1b[34m%s: \x1b[0m    %s', 'Password', password);
-  logger.info('\x1b[34m%s: \x1b[0m%s', 'Instance Url', instanceUrl);
-  logger.info('\x1b[34m%s: \x1b[0m  %s', 'Expiration', expirationDate);
+  logger.info('\u{1B}[34m%s: \u{1B}[0m    %s', 'Username', username);
+  logger.info('\u{1B}[34m%s: \u{1B}[0m    %s', 'Password', password);
+  logger.info('\u{1B}[34m%s: \u{1B}[0m%s', 'Instance Url', instanceUrl);
+  logger.info('\u{1B}[34m%s: \u{1B}[0m  %s', 'Expiration', expirationDate);
 }
 
 function drawMarkdownTable(username, password, instanceUrl, expirationDate) {

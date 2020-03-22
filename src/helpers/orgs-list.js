@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
+const logger = require('./logger');
 
 module.exports = orgsList;
 
@@ -11,23 +12,24 @@ function orgsList(promptText = 'Open Scratch Org:') {
     });
 
     if (choices.length === 0) {
-      console.info('There are no active scratch orgs');
+      logger.info('There are no active scratch orgs');
       return;
     }
 
-    return inquirer.prompt([
-      {
-        name: 'instanceUrl',
-        message: promptText,
-        type: 'list',
-        choices
-      }
-    ])
-    .then(({ instanceUrl }) => {
-      const index = choices.indexOf(instanceUrl);
-      const { username } = orgs[index];
-      return username;
-    });
+    return inquirer
+      .prompt([
+        {
+          name: 'instanceUrl',
+          message: promptText,
+          type: 'list',
+          choices
+        }
+      ])
+      .then(({ instanceUrl }) => {
+        const index = choices.indexOf(instanceUrl);
+        const { username } = orgs[index];
+        return username;
+      });
   });
 }
 

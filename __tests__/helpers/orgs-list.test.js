@@ -4,6 +4,7 @@ const orgsList = require('../../src/helpers/orgs-list');
 
 jest.mock('child_process');
 jest.mock('util');
+jest.mock('../../src/helpers/logger');
 
 describe('Orgs list', () => {
   beforeEach(() => {

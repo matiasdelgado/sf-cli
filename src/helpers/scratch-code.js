@@ -1,5 +1,6 @@
 const spawn = require('child_process').spawn;
 const isSalesforceProject = require('./context-validation');
+const logger = require('./logger');
 
 module.exports = handleCode;
 
@@ -13,12 +14,12 @@ function pullFromScratch() {
 
 function handleCode({ pull, push }) {
   if (!isSalesforceProject()) {
-    console.info('This command is required to run from within an SFDX project.');
+    logger.info('This command is required to run from within an SFDX project.');
     return;
   }
 
   if (pull && push) {
-    console.info('Pull and push are mutually exclusive options');
+    logger.info('Pull and push are mutually exclusive options');
     return;
   }
 
