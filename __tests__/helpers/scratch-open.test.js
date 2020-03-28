@@ -1,5 +1,5 @@
 const exec = require('child_process').exec;
-const openOrg = require('../../src/helpers/open-scratch');
+const openOrg = require('../../src/helpers/scratch-open');
 
 jest.mock('child_process');
 jest.mock('util');

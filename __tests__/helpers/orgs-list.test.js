@@ -32,7 +32,7 @@ describe('Orgs list', () => {
 
     expect(exec).toHaveBeenCalledTimes(1);
     expect(exec.mock.calls[0][0]).toBe('sfdx force:org:list --json');
-    expect(result).toBe('cap');
+    expect(result).toMatchObject({ username: 'cap' });
   });
 
   it('should abort if no orgs available', async () => {
