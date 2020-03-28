@@ -16,7 +16,7 @@ class SwitchCommand extends Command {
       }
     }
 
-    const { username } = listOrgs('Choose Scratch Org:');
+    const { username } = await listOrgs('Choose Scratch Org:');
     if (isProject) {
       await setDefault(username);
     }

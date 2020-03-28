@@ -3,9 +3,9 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 const logger = require('./logger');
 
-module.exports = orgsList;
+module.exports = listOrgs;
 
-async function orgsList(promptText = 'Open Scratch Org:') {
+async function listOrgs(promptText = 'Open Scratch Org:') {
   const orgs = await getScratchOrgs();
   const choices = orgs.map(org => {
     return `${org.expirationDate} ${org.instanceUrl}${org.isDefaultUsername ? ' *' : ''}`;
@@ -30,19 +30,19 @@ async function orgsList(promptText = 'Open Scratch Org:') {
   return { instanceUrl, username };
 }
 
-function getScratchOrgs() {
+async function getScratchOrgs() {
   const command = 'sfdx force:org:list --json';
-  return exec(command).then(({ stderr, stdout }) => {
-    if (stderr) {
-      throw new Error(stderr);
-    }
+  const { stderr, stdout } = await exec(command);
 
-    const data = JSON.parse(stdout);
-    return data.result.scratchOrgs.map(({ instanceUrl, isDefaultUsername, expirationDate, username }) => ({
-      instanceUrl,
-      isDefaultUsername,
-      expirationDate,
-      username
-    }));
-  });
+  if (stderr) {
+    throw new Error(stderr);
+  }
+
+  const data = JSON.parse(stdout);
+  return data.result.scratchOrgs.map(({ instanceUrl, isDefaultUsername, expirationDate, username }) => ({
+    instanceUrl,
+    isDefaultUsername,
+    expirationDate,
+    username
+  }));
 }

@@ -8,7 +8,7 @@ class InfoCommand extends Command {
   }
 }
 
-InfoCommand.description = 'Display current scratch org url';
+InfoCommand.description = 'Display current scratch org information';
 
 InfoCommand.flags = {
   markdown: flags.boolean({ char: 'm', description: 'Generates MD code' })

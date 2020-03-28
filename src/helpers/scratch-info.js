@@ -13,8 +13,9 @@ async function showInfo(markdown) {
   }
 }
 
-async function getInfo() {
-  const command = 'sfdx force:org:display --json';
+async function getInfo(user = null) {
+  const userParameter = user ? ` -u ${user}` : '';
+  const command = `sfdx force:org:display${userParameter} --json`;
   const { stderr, stdout } = await exec(command);
 
   if (stderr) {

@@ -3,8 +3,8 @@ sf
 
 SFDX wrapper
 
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 <!-- [![Version](https://img.shields.io/npm/v/sf.svg)](https://npmjs.org/package/sf) -->
+[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![CircleCI](https://circleci.com/gh/matiasdelgado/sf-cli/tree/master.svg?style=shield)](https://circleci.com/gh/matiasdelgado/sf-cli/tree/master)
 [![License](https://img.shields.io/npm/l/sf.svg)](https://github.com/matiasdelgado/sf-cli/blob/master/LICENSE)
 
@@ -69,18 +69,14 @@ _See code: [src/commands/code.js](https://github.com/matiasdelgado/sf-cli/blob/v
 
 ## `sf delete`
 
-Describe the command here
+Delete scratch org
 
 ```
 USAGE
   $ sf delete
 
 OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
+  -d, --defaultOrg  Current scratch org
 ```
 
 _See code: [src/commands/delete.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/delete.js)_
@@ -104,7 +100,7 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3
 
 ## `sf info`
 
-Display current scratch org url
+Display current scratch org information
 
 ```
 USAGE
