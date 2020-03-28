@@ -16,12 +16,13 @@ class SwitchCommand extends Command {
       }
     }
 
-    return listOrgs('Choose Scratch Org:')
-      .then(username => {
-        if (!isProject) return username;
-        return setDefault(username).then(() => username);
-      })
-      .then(username => flags.open && openOrg(username));
+    const { username } = listOrgs('Choose Scratch Org:');
+    if (isProject) {
+      await setDefault(username);
+    }
+    if (flags.open) {
+      await openOrg(username);
+    }
   }
 }
 

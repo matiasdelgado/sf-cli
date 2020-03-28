@@ -2,23 +2,30 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 const logger = require('./logger');
 
-module.exports = showInfo;
+module.exports = { getInfo, showInfo };
 
-function showInfo(markdown) {
+async function showInfo(markdown) {
+  const { username, password, instanceUrl, expirationDate } = await getInfo();
+  if (markdown) {
+    drawMarkdownTable(username, password, instanceUrl, expirationDate);
+  } else {
+    drawTable(username, password, instanceUrl, expirationDate);
+  }
+}
+
+async function getInfo() {
   const command = 'sfdx force:org:display --json';
-  return exec(command).then(({ stderr, stdout }) => {
-    if (stderr) {
-      throw new Error(stderr);
-    }
-    const {
-      result: { username, password, instanceUrl, expirationDate }
-    } = JSON.parse(stdout);
-    if (markdown) {
-      drawMarkdownTable(username, password, instanceUrl, expirationDate);
-    } else {
-      drawTable(username, password, instanceUrl, expirationDate);
-    }
-  });
+  const { stderr, stdout } = await exec(command);
+
+  if (stderr) {
+    throw new Error(stderr);
+  }
+
+  const {
+    result: { username, password, instanceUrl, expirationDate }
+  } = JSON.parse(stdout);
+
+  return { username, password, instanceUrl, expirationDate };
 }
 
 function drawTable(username, password, instanceUrl, expirationDate) {

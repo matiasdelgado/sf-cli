@@ -1,5 +1,5 @@
 const { Command, flags } = require('@oclif/command');
-const showInfo = require('../helpers/scratch-info');
+const { showInfo } = require('../helpers/scratch-info');
 
 class InfoCommand extends Command {
   async run() {

@@ -4,37 +4,53 @@ sf
 SFDX wrapper
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/sf.svg)](https://npmjs.org/package/sf)
+<!-- [![Version](https://img.shields.io/npm/v/sf.svg)](https://npmjs.org/package/sf) -->
 [![CircleCI](https://circleci.com/gh/matiasdelgado/sf-cli/tree/master.svg?style=shield)](https://circleci.com/gh/matiasdelgado/sf-cli/tree/master)
 [![License](https://img.shields.io/npm/l/sf.svg)](https://github.com/matiasdelgado/sf-cli/blob/master/LICENSE)
 
 <!-- toc -->
-* [Usage](#usage)
+* [Installation](#installation)
 * [Commands](#commands)
 <!-- tocstop -->
-# Usage
-<!-- usage -->
-```sh-session
-$ npm install -g sf
-$ sf COMMAND
-running command...
-$ sf (-v|--version|version)
-sf/0.0.0 darwin-x64 node-v10.13.0
-$ sf --help [COMMAND]
-USAGE
-  $ sf COMMAND
-...
-```
-<!-- usagestop -->
+
+# Installation
+1. Install the [Salesforce DX CLI](https://developer.salesforce.com/tools/sfdxcli)
+2. `npm install -g sfdx-cli`
+
 # Commands
 <!-- commands -->
+* [`sf autocomplete [SHELL]`](#sf-autocomplete-shell)
 * [`sf code`](#sf-code)
+* [`sf delete`](#sf-delete)
 * [`sf help [COMMAND]`](#sf-help-command)
 * [`sf info`](#sf-info)
 * [`sf log`](#sf-log)
 * [`sf open`](#sf-open)
 * [`sf switch`](#sf-switch)
 * [`sf test`](#sf-test)
+
+## `sf autocomplete [SHELL]`
+
+display autocomplete installation instructions
+
+```
+USAGE
+  $ sf autocomplete [SHELL]
+
+ARGUMENTS
+  SHELL  shell type
+
+OPTIONS
+  -r, --refresh-cache  Refresh cache (ignores displaying instructions)
+
+EXAMPLES
+  $ sf autocomplete
+  $ sf autocomplete bash
+  $ sf autocomplete zsh
+  $ sf autocomplete --refresh-cache
+```
+
+_See code: [@oclif/plugin-autocomplete](https://github.com/oclif/plugin-autocomplete/blob/v0.1.5/src/commands/autocomplete/index.ts)_
 
 ## `sf code`
 
@@ -49,7 +65,25 @@ OPTIONS
   -p, --push  Push to scratch org
 ```
 
-_See code: [src/commands/code.js](https://github.com/matiasdelgado/sf-cli/blob/v0.0.0/src/commands/code.js)_
+_See code: [src/commands/code.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/code.js)_
+
+## `sf delete`
+
+Describe the command here
+
+```
+USAGE
+  $ sf delete
+
+OPTIONS
+  -n, --name=name  name to print
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src/commands/delete.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/delete.js)_
 
 ## `sf help [COMMAND]`
 
@@ -80,7 +114,7 @@ OPTIONS
   -m, --markdown  Generates MD code
 ```
 
-_See code: [src/commands/info.js](https://github.com/matiasdelgado/sf-cli/blob/v0.0.0/src/commands/info.js)_
+_See code: [src/commands/info.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/info.js)_
 
 ## `sf log`
 
@@ -91,7 +125,7 @@ USAGE
   $ sf log
 ```
 
-_See code: [src/commands/log.js](https://github.com/matiasdelgado/sf-cli/blob/v0.0.0/src/commands/log.js)_
+_See code: [src/commands/log.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/log.js)_
 
 ## `sf open`
 
@@ -105,7 +139,7 @@ OPTIONS
   -d, --defaultOrg  Open default org
 ```
 
-_See code: [src/commands/open.js](https://github.com/matiasdelgado/sf-cli/blob/v0.0.0/src/commands/open.js)_
+_See code: [src/commands/open.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/open.js)_
 
 ## `sf switch`
 
@@ -119,7 +153,7 @@ OPTIONS
   -o, --open  Open the scratch org in the browser
 ```
 
-_See code: [src/commands/switch.js](https://github.com/matiasdelgado/sf-cli/blob/v0.0.0/src/commands/switch.js)_
+_See code: [src/commands/switch.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/switch.js)_
 
 ## `sf test`
 
@@ -134,5 +168,5 @@ OPTIONS
   -m, --method=method        Run test by method name
 ```
 
-_See code: [src/commands/test.js](https://github.com/matiasdelgado/sf-cli/blob/v0.0.0/src/commands/test.js)_
+_See code: [src/commands/test.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/test.js)_
 <!-- commandsstop -->

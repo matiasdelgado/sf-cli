@@ -11,7 +11,7 @@ class OpenCommand extends Command {
       return;
     }
 
-    return flags.defaultOrg ? openOrg() : listOrgs().then(openOrg);
+    return flags.defaultOrg ? openOrg() : listOrgs().then(({ username }) => openOrg(username));
   }
 }
 

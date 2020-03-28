@@ -5,32 +5,29 @@ const logger = require('./logger');
 
 module.exports = orgsList;
 
-function orgsList(promptText = 'Open Scratch Org:') {
-  return getScratchOrgs().then(orgs => {
-    const choices = orgs.map(org => {
-      return `${org.expirationDate} ${org.instanceUrl}${org.isDefaultUsername ? ' *' : ''}`;
-    });
-
-    if (choices.length === 0) {
-      logger.info('There are no active scratch orgs');
-      return;
-    }
-
-    return inquirer
-      .prompt([
-        {
-          name: 'instanceUrl',
-          message: promptText,
-          type: 'list',
-          choices
-        }
-      ])
-      .then(({ instanceUrl }) => {
-        const index = choices.indexOf(instanceUrl);
-        const { username } = orgs[index];
-        return username;
-      });
+async function orgsList(promptText = 'Open Scratch Org:') {
+  const orgs = await getScratchOrgs();
+  const choices = orgs.map(org => {
+    return `${org.expirationDate} ${org.instanceUrl}${org.isDefaultUsername ? ' *' : ''}`;
   });
+
+  if (choices.length === 0) {
+    logger.info('There are no active scratch orgs');
+    return;
+  }
+
+  const { instanceUrl } = await inquirer.prompt([
+    {
+      name: 'instanceUrl',
+      message: promptText,
+      type: 'list',
+      choices
+    }
+  ]);
+
+  const index = choices.indexOf(instanceUrl);
+  const { username } = orgs[index];
+  return { instanceUrl, username };
 }
 
 function getScratchOrgs() {

@@ -1,5 +1,5 @@
 const exec = require('child_process').exec;
-const showInfo = require('../../src/helpers/scratch-info');
+const { showInfo } = require('../../src/helpers/scratch-info');
 const logger = require('../../src/helpers/logger');
 
 jest.mock('child_process');
