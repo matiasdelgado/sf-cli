@@ -1,7 +1,7 @@
 const { Command, flags } = require('@oclif/command');
 const isSalesforceProject = require('../helpers/context-validation');
-const openOrg = require('../helpers/scratch-open');
-const listOrgs = require('../helpers/orgs-list');
+const { openOrg } = require('../helpers/scratch-org');
+const listOrgs = require('../helpers/scratch-org-list');
 
 class OpenCommand extends Command {
   async run() {

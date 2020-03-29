@@ -1,8 +1,7 @@
 const inquirer = require('inquirer');
 const { Command, flags } = require('@oclif/command');
-const listOrgs = require('../helpers/orgs-list');
-const deleteOrg = require('../helpers/scratch-delete');
-const { getInfo } = require('../helpers/scratch-info');
+const listOrgs = require('../helpers/scratch-org-list');
+const { deleteOrg, getInfo } = require('../helpers/scratch-org');
 
 class DeleteCommand extends Command {
   async run() {

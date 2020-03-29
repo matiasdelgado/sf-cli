@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const exec = require('child_process').exec;
-const orgsList = require('../../src/helpers/orgs-list');
+const { listOrgs } = require('../../src/helpers/scratch-org-list');
 
 jest.mock('child_process');
 jest.mock('util');
@@ -28,7 +28,7 @@ describe('Orgs list', () => {
         }
       })
     });
-    const result = await orgsList();
+    const result = await listOrgs();
 
     expect(exec).toHaveBeenCalledTimes(1);
     expect(exec.mock.calls[0][0]).toBe('sfdx force:org:list --json');
@@ -44,7 +44,7 @@ describe('Orgs list', () => {
       })
     });
 
-    orgsList();
+    await listOrgs();
 
     expect(exec).toHaveBeenCalledTimes(1);
     expect(exec.mock.calls[0][0]).toBe('sfdx force:org:list --json');

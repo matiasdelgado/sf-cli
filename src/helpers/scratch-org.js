@@ -2,7 +2,13 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 const logger = require('./logger');
 
-module.exports = { getInfo, showInfo };
+module.exports = { deleteOrg, getInfo, showInfo, openOrg };
+
+function deleteOrg(username) {
+  const userParameter = username ? ` -u ${username}` : '';
+  const command = `sfdx force:org:delete${userParameter}`;
+  return exec(command);
+}
 
 async function showInfo(markdown) {
   const { username, password, instanceUrl, expirationDate } = await getInfo();
@@ -27,6 +33,13 @@ async function getInfo(user = null) {
   } = JSON.parse(stdout);
 
   return { username, password, instanceUrl, expirationDate };
+}
+
+function openOrg(username) {
+  const userParameter = username ? ` -u ${username}` : '';
+  const openCommand = `sfdx force:org:open${userParameter}`;
+  process.stdout.write('Opening browser...'); // write message and do not add a CRLF
+  return exec(openCommand).then(() => process.stdout.write('\u{1B}[2K')); // remove line
 }
 
 function drawTable(username, password, instanceUrl, expirationDate) {
