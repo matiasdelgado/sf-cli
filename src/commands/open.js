@@ -1,25 +1,24 @@
 const { Command, flags } = require('@oclif/command');
 const isSalesforceProject = require('../helpers/context-validation');
 const { openOrg } = require('../helpers/scratch-org');
-const listOrgs = require('../helpers/scratch-org-list');
+const { listOrgs } = require('../helpers/scratch-org-list');
 
 class OpenCommand extends Command {
   async run() {
     const { flags } = this.parse(OpenCommand);
-    if (!isSalesforceProject() && flags.defaultOrg) {
+    if (!isSalesforceProject() && !flags.select) {
       this.log('This command is required to run from within an SFDX project.');
       return;
     }
 
-    return flags.defaultOrg ? openOrg() : listOrgs().then(({ username }) => openOrg(username));
+    return flags.select ? listOrgs().then(({ username }) => openOrg(username)) : openOrg();
   }
 }
 
-OpenCommand.description =
-  'Open a scratch org in the browser by username or by picking from the list of available orgs.';
+OpenCommand.description = 'Open the default scratch org in the browser or by picking from the list of available orgs.';
 
 OpenCommand.flags = {
-  defaultOrg: flags.boolean({ char: 'd', description: 'Open default org' })
+  select: flags.boolean({ char: 's', description: 'Select scratch org to open' })
 };
 
 module.exports = OpenCommand;

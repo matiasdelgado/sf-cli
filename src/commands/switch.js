@@ -1,7 +1,7 @@
 const { Command, flags } = require('@oclif/command');
 const isSalesforceProject = require('../helpers/context-validation');
 const { openOrg } = require('../helpers/scratch-org');
-const listOrgs = require('../helpers/scratch-org-list');
+const { listOrgs } = require('../helpers/scratch-org-list');
 const { setDefault } = require('../helpers/scratch-config');
 
 class SwitchCommand extends Command {
