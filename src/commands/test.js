@@ -4,20 +4,19 @@ const { runTestMethod, runTestClass } = require('../helpers/server-tests');
 class TestCommand extends Command {
   async run() {
     const { flags } = this.parse(TestCommand);
-    if (flags.classname) {
-      return runTestClass(flags.classname);
+
+    if (flags.subject.indexOf('.') > 0) {
+      return runTestMethod(flags.subject);
     }
-    if (flags.method) {
-      return runTestMethod(flags.method);
-    }
+
+    return runTestClass(flags.subject);
   }
 }
 
 TestCommand.description = 'Run tests by class or method name';
 
 TestCommand.flags = {
-  classname: flags.string({ char: 'c', description: 'Run tests in class' }),
-  method: flags.string({ char: 'm', description: 'Run test by method name' })
+  subject: flags.string({ char: 's', description: 'Run method or class test' })
 };
 
 module.exports = TestCommand;
