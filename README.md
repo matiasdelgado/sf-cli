@@ -14,7 +14,7 @@ SFDX wrapper
 <!-- tocstop -->
 
 # Installation
-1. Install the [Salesforce DX CLI](https://developer.salesforce.com/tools/sfdxcli)
+1. Make sure [Salesforce DX CLI](https://developer.salesforce.com/tools/sfdxcli) is installed in your system.
 2. `npm install -g sfdx-cli`
 
 # Commands
@@ -24,6 +24,7 @@ SFDX wrapper
 * [`sf delete`](#sf-delete)
 * [`sf help [COMMAND]`](#sf-help-command)
 * [`sf info`](#sf-info)
+* [`sf list`](#sf-list)
 * [`sf log`](#sf-log)
 * [`sf open`](#sf-open)
 * [`sf switch`](#sf-switch)
@@ -76,7 +77,7 @@ USAGE
   $ sf delete
 
 OPTIONS
-  -d, --defaultOrg  Current scratch org
+  -s, --select  Select scratch org to delete
 ```
 
 _See code: [src/commands/delete.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/delete.js)_
@@ -119,20 +120,23 @@ Show remote logs
 ```
 USAGE
   $ sf log
+
+OPTIONS
+  -d, --debug  Show only debug messages
 ```
 
 _See code: [src/commands/log.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/log.js)_
 
 ## `sf open`
 
-Open a scratch org in the browser by username or by picking from the list of available orgs.
+Open the default scratch org in the browser or by picking from the list of available orgs.
 
 ```
 USAGE
   $ sf open
 
 OPTIONS
-  -d, --defaultOrg  Open default org
+  -s, --select  Select scratch org to open
 ```
 
 _See code: [src/commands/open.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/open.js)_

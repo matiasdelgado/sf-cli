@@ -1,3 +1,4 @@
+const chalk = require('chalk');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 const logger = require('./logger');
@@ -6,16 +7,16 @@ module.exports = { deleteOrg, getInfo, showInfo, openOrg };
 
 function deleteOrg(username) {
   const userParameter = username ? ` -u ${username}` : '';
-  const command = `sfdx force:org:delete${userParameter}`;
+  const command = `sfdx force:org:delete${userParameter} --noprompt`;
   return exec(command);
 }
 
-async function showInfo(markdown) {
-  const { username, password, instanceUrl, expirationDate } = await getInfo();
+async function showInfo(markdown, alias) {
+  const info = await getInfo(alias);
   if (markdown) {
-    drawMarkdownTable(username, password, instanceUrl, expirationDate);
+    drawMarkdownTable(info);
   } else {
-    drawTable(username, password, instanceUrl, expirationDate);
+    drawTable(info);
   }
 }
 
@@ -29,10 +30,10 @@ async function getInfo(user = null) {
   }
 
   const {
-    result: { username, password, instanceUrl, expirationDate }
+    result: { alias, username, password, instanceUrl, expirationDate }
   } = JSON.parse(stdout);
 
-  return { username, password, instanceUrl, expirationDate };
+  return { alias, username, password, instanceUrl, expirationDate };
 }
 
 function openOrg(username) {
@@ -42,14 +43,15 @@ function openOrg(username) {
   return exec(openCommand).then(() => process.stdout.write('\u{1B}[2K')); // remove line
 }
 
-function drawTable(username, password, instanceUrl, expirationDate) {
-  logger.info('\u{1B}[34m%s: \u{1B}[0m    %s', 'Username', username);
-  logger.info('\u{1B}[34m%s: \u{1B}[0m    %s', 'Password', password);
-  logger.info('\u{1B}[34m%s: \u{1B}[0m%s', 'Instance Url', instanceUrl);
-  logger.info('\u{1B}[34m%s: \u{1B}[0m  %s', 'Expiration', expirationDate);
+function drawTable({ alias, username, password, instanceUrl, expirationDate }) {
+  logger.info(chalk.blue('Alias   :     '), alias || '');
+  logger.info(chalk.blue('Username:     '), username);
+  logger.info(chalk.blue('Password:     '), password);
+  logger.info(chalk.blue('Instance Url: '), instanceUrl);
+  logger.info(chalk.blue('Expiration:   '), expirationDate);
 }
 
-function drawMarkdownTable(username, password, instanceUrl, expirationDate) {
+function drawMarkdownTable({ username, password, instanceUrl, expirationDate }) {
   logger.info('|key          |value');
   logger.info('|:---         |:---');
   logger.info('|Username     |', username);

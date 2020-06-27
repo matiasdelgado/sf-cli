@@ -4,7 +4,8 @@ const handleCode = require('../helpers/scratch-code');
 class CodeCommand extends Command {
   async run() {
     const { flags } = this.parse(CodeCommand);
-    handleCode(flags);
+    const result = handleCode(flags);
+    this.exit(result);
   }
 }
 

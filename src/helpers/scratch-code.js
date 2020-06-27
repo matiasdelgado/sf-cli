@@ -1,3 +1,4 @@
+const exec = require('child_process').execSync;
 const spawn = require('child_process').spawn;
 const isSalesforceProject = require('./context-validation');
 const logger = require('./logger');
@@ -6,6 +7,8 @@ module.exports = handleCode;
 
 function pushToScratch() {
   spawn('sfdx', ['force:source:push', '-f'], { stdio: 'inherit' });
+  // const result = exec('sfdx force:source:push -f');
+  // return result.error;
 }
 
 function pullFromScratch() {
