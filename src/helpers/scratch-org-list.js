@@ -9,7 +9,9 @@ async function listOrgs(promptText = 'Open Scratch Org:') {
   const orgs = await getScratchOrgs();
   const choices = orgs.map(org => {
     const aliasLength = Math.max(...orgs.map(org => (org.alias ? org.alias.length : 0)));
-    return `${org.expirationDate} ${org.alias.padEnd(aliasLength)} ${org.instanceUrl}${org.isDefaultUsername ? ' *' : ''}`;
+    return `${org.expirationDate} ${org.alias.padEnd(aliasLength)} ${org.instanceUrl}${
+      org.isDefaultUsername ? ' *' : ''
+    }`;
   });
 
   if (choices.length === 0) {

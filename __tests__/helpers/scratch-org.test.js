@@ -41,7 +41,6 @@ describe('ScratchOrg', () => {
       expect(exec.mock.calls[0][0]).toBe('sfdx force:org:display -u myAlias --json');
     });
 
-
     it('should print raw info', async () => {
       await showInfo();
 

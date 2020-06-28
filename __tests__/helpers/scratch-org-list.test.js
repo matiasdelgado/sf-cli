@@ -9,7 +9,7 @@ jest.mock('../../src/helpers/logger');
 describe('Orgs list', () => {
   beforeEach(() => {
     inquirer.prompt.mockClear();
-    inquirer.prompt.mockResolvedValue({ instanceUrl: '1891-09-28 http://test-scratch.com *' });
+    inquirer.prompt.mockResolvedValue({ instanceUrl: '1891-09-28 my-alias http://test-scratch.com *' });
     exec.mockClear();
   });
 
@@ -19,6 +19,7 @@ describe('Orgs list', () => {
         result: {
           scratchOrgs: [
             {
+              alias: 'my-alias',
               instanceUrl: 'http://test-scratch.com',
               isDefaultUsername: 'yes',
               expirationDate: '1891-09-28',
