@@ -17,7 +17,7 @@ class DeleteCommand extends Command {
       }
     ]);
 
-    if (answer) {
+    if (answer.confirm) {
       await deleteOrg(username);
     }
   }
