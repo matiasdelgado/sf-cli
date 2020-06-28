@@ -46,7 +46,7 @@ function openOrg(username) {
 function drawTable({ alias, username, password, instanceUrl, expirationDate }) {
   logger.info(chalk.blue('Alias   :     '), alias || '');
   logger.info(chalk.blue('Username:     '), username);
-  logger.info(chalk.blue('Password:     '), password);
+  logger.info(chalk.blue('Password:     '), password || '');
   logger.info(chalk.blue('Instance Url: '), instanceUrl);
   logger.info(chalk.blue('Expiration:   '), expirationDate);
 }
@@ -55,7 +55,7 @@ function drawMarkdownTable({ username, password, instanceUrl, expirationDate }) 
   logger.info('|key          |value');
   logger.info('|:---         |:---');
   logger.info('|Username     |', username);
-  logger.info('|Password     |', password);
+  logger.info('|Password     |', password || '');
   logger.info('|Instance Url |', instanceUrl);
   logger.info('|Expiration   |', expirationDate);
 }
