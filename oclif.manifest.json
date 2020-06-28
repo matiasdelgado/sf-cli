@@ -1,0 +1,127 @@
+{
+  "version": "1.0.0",
+  "commands": {
+    "code": {
+      "id": "code",
+      "description": "Push/pull source code",
+      "pluginName": "sf-cli",
+      "pluginType": "core",
+      "aliases": [],
+      "flags": {
+        "pull": {
+          "name": "pull",
+          "type": "boolean",
+          "char": "l",
+          "description": "Pull from scratch org",
+          "allowNo": false
+        },
+        "push": {
+          "name": "push",
+          "type": "boolean",
+          "char": "p",
+          "description": "Push to scratch org",
+          "allowNo": false
+        }
+      },
+      "args": []
+    },
+    "delete": {
+      "id": "delete",
+      "description": "Delete scratch org",
+      "pluginName": "sf-cli",
+      "pluginType": "core",
+      "aliases": [],
+      "flags": {
+        "select": {
+          "name": "select",
+          "type": "boolean",
+          "char": "s",
+          "description": "Select scratch org to delete",
+          "allowNo": false
+        }
+      },
+      "args": []
+    },
+    "info": {
+      "id": "info",
+      "description": "Display current scratch org information",
+      "pluginName": "sf-cli",
+      "pluginType": "core",
+      "aliases": [],
+      "flags": {
+        "alias": { "name": "alias", "type": "option", "char": "a", "description": "Alias or username" },
+        "markdown": {
+          "name": "markdown",
+          "type": "boolean",
+          "char": "m",
+          "description": "Generates MD code",
+          "allowNo": false
+        }
+      },
+      "args": []
+    },
+    "list": {
+      "id": "list",
+      "description": "List all available scratch orgs.",
+      "pluginName": "sf-cli",
+      "pluginType": "core",
+      "aliases": [],
+      "flags": {},
+      "args": []
+    },
+    "log": {
+      "id": "log",
+      "description": "Show remote logs",
+      "pluginName": "sf-cli",
+      "pluginType": "core",
+      "aliases": [],
+      "flags": {},
+      "args": []
+    },
+    "open": {
+      "id": "open",
+      "description": "Open the default scratch org in the browser or by picking from the list of available orgs.",
+      "pluginName": "sf-cli",
+      "pluginType": "core",
+      "aliases": [],
+      "flags": {
+        "select": {
+          "name": "select",
+          "type": "boolean",
+          "char": "s",
+          "description": "Select scratch org to open",
+          "allowNo": false
+        }
+      },
+      "args": []
+    },
+    "switch": {
+      "id": "switch",
+      "description": "Change the default scratch org",
+      "pluginName": "sf-cli",
+      "pluginType": "core",
+      "aliases": [],
+      "flags": {
+        "open": {
+          "name": "open",
+          "type": "boolean",
+          "char": "o",
+          "description": "Open the scratch org in the browser",
+          "allowNo": false
+        }
+      },
+      "args": []
+    },
+    "test": {
+      "id": "test",
+      "description": "Run tests by class or method name",
+      "pluginName": "sf-cli",
+      "pluginType": "core",
+      "aliases": [],
+      "flags": {
+        "subject": { "name": "subject", "type": "option", "char": "s", "description": "Run method or class test" }
+      },
+      "args": []
+    }
+  }
+}

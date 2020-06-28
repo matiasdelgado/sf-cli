@@ -1,7 +1,7 @@
 {
-  "name": "sf",
+  "name": "sf-cli",
   "description": "SFDX wrapper",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "author": "Matias Delgado",
   "bin": {
     "sf": "./bin/run"
