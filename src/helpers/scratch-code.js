@@ -1,23 +1,35 @@
 const exec = require('child_process').execSync;
-const spawn = require('child_process').spawn;
 const isSalesforceProject = require('./context-validation');
 const logger = require('./logger');
 
 module.exports = handleCode;
 
 function pushToScratch() {
-  spawn('sfdx', ['force:source:push', '-f'], { stdio: 'inherit' });
-  // const result = exec('sfdx force:source:push -f');
-  // return result.error;
+  try {
+    exec('sfdx force:source:push -f', { stdio: 'inherit' });
+    return 0;
+  } catch (error) {
+    return error.status || 1;
+  }
 }
 
 function pullFromScratch() {
-  spawn('sfdx', ['force:source:pull', '-f'], { stdio: 'inherit' });
+  try {
+    exec('sfdx force:source:pull -f');
+    return 0;
+  } catch (error) {
+    return error.status || 1;
+  }
 }
 
 function handleCode({ pull, push }) {
   if (!isSalesforceProject()) {
     logger.info('This command is required to run from within an SFDX project.');
+    return;
+  }
+
+  if (!pull && !push) {
+    logger.info('Missing parameter: --pull, --push');
     return;
   }
 
