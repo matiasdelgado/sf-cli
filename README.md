@@ -108,10 +108,23 @@ USAGE
   $ sf info
 
 OPTIONS
+  -a, --alias     Alias or username of the scratch org, if not provided default org will be used
   -m, --markdown  Generates MD code
 ```
 
 _See code: [src/commands/info.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/info.js)_
+
+## `sf list`
+
+Show available scratch orgs
+
+```
+USAGE
+  $ sf list
+
+```
+
+_See code: [src/commands/list.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/list.js)_
 
 ## `sf log`
 
@@ -120,9 +133,6 @@ Show remote logs
 ```
 USAGE
   $ sf log
-
-OPTIONS
-  -d, --debug  Show only debug messages
 ```
 
 _See code: [src/commands/log.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/log.js)_
@@ -164,8 +174,7 @@ USAGE
   $ sf test
 
 OPTIONS
-  -c, --classname=classname  Run tests in class
-  -m, --method=method        Run test by method name
+  -s, --subject  Run tests in class (-s ClassName) or method (-s ClassName.Method)
 ```
 
 _See code: [src/commands/test.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/test.js)_
