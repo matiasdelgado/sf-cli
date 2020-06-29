@@ -14,8 +14,11 @@ SFDX wrapper
 <!-- tocstop -->
 
 # Installation
-1. Make sure [Salesforce DX CLI](https://developer.salesforce.com/tools/sfdxcli) is installed in your system.
-2. `npm install -g sf-cli` [PENDING]
+Make sure [Salesforce DX CLI](https://developer.salesforce.com/tools/sfdxcli) is installed in your system.
+```
+brew tap matiasdelgado/sf-cli
+brew install sf-cli
+```
 
 # Commands
 <!-- commands -->
