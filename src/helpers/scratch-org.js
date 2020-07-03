@@ -12,11 +12,16 @@ function deleteOrg(username) {
 }
 
 async function showInfo(markdown, alias) {
-  const info = await getInfo(alias);
-  if (markdown) {
-    drawMarkdownTable(info);
-  } else {
-    drawTable(info);
+  try {
+    const info = await getInfo(alias);
+    if (markdown) {
+      drawMarkdownTable(info);
+    } else {
+      drawTable(info);
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
   }
 }
 
