@@ -66,7 +66,7 @@ function drawMarkdownTable({ username, password, instanceUrl, expirationDate }) 
   logger.info('|key          |value');
   logger.info('|:---         |:---');
   logger.info('|Username     |', username);
-  logger.info('|Password     |', password || '');
+  logger.info('|Password     |', password ? password.replace(/\|/g, '\\|') : '');
   logger.info('|Instance Url |', instanceUrl);
   logger.info('|Expiration   |', expirationDate);
 }
