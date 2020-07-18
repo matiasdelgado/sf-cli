@@ -3,6 +3,7 @@ const { deleteOrg, getInfo, openOrg, showInfo } = require('../../src/helpers/scr
 const logger = require('../../src/helpers/logger');
 
 jest.mock('child_process');
+jest.mock('fs');
 jest.mock('util');
 jest.mock('../../src/helpers/logger');
 

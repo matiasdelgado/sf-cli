@@ -1,6 +1,7 @@
 const chalk = require('chalk');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
+const isSalesforceProject = require('./context-validation');
 const logger = require('./logger');
 
 module.exports = { deleteOrg, getInfo, showInfo, openOrg };
@@ -12,6 +13,11 @@ function deleteOrg(username) {
 }
 
 async function showInfo(markdown, alias) {
+  if (!isSalesforceProject()) {
+    logger.info('This command is required to run from within an SFDX project.');
+    return;
+  }
+
   try {
     const info = await getInfo(alias);
     if (markdown) {
