@@ -22,6 +22,7 @@ brew install sf-cli
 
 # Commands
 <!-- commands -->
+* [`sf `](#sf-)
 * [`sf autocomplete [SHELL]`](#sf-autocomplete-shell)
 * [`sf code`](#sf-code)
 * [`sf delete`](#sf-delete)
@@ -32,6 +33,21 @@ brew install sf-cli
 * [`sf open`](#sf-open)
 * [`sf switch`](#sf-switch)
 * [`sf test`](#sf-test)
+
+## `sf `
+
+Push/pull source code
+
+```
+USAGE
+  $ sf
+
+OPTIONS
+  -l, --pull  Pull from scratch org
+  -p, --push  Push to scratch org
+```
+
+_See code: [src/commands/index.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/index.js)_
 
 ## `sf autocomplete [SHELL]`
 
@@ -69,7 +85,7 @@ OPTIONS
   -p, --push  Push to scratch org
 ```
 
-_See code: [src/commands/code.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/code.js)_
+_See code: [src/commands/code.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/code.js)_
 
 ## `sf delete`
 
@@ -83,7 +99,7 @@ OPTIONS
   -s, --select  Select scratch org to delete
 ```
 
-_See code: [src/commands/delete.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/delete.js)_
+_See code: [src/commands/delete.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/delete.js)_
 
 ## `sf help [COMMAND]`
 
@@ -111,23 +127,22 @@ USAGE
   $ sf info
 
 OPTIONS
-  -a, --alias     Alias or username of the scratch org, if not provided default org will be used
-  -m, --markdown  Generates MD code
+  -a, --alias=alias  Alias or username
+  -m, --markdown     Generates MD code
 ```
 
-_See code: [src/commands/info.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/info.js)_
+_See code: [src/commands/info.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/info.js)_
 
 ## `sf list`
 
-Show available scratch orgs
+List all available scratch orgs.
 
 ```
 USAGE
   $ sf list
-
 ```
 
-_See code: [src/commands/list.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/list.js)_
+_See code: [src/commands/list.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/list.js)_
 
 ## `sf log`
 
@@ -136,9 +151,12 @@ Show remote logs
 ```
 USAGE
   $ sf log
+
+OPTIONS
+  -d, --debug  Show debug messages only
 ```
 
-_See code: [src/commands/log.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/log.js)_
+_See code: [src/commands/log.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/log.js)_
 
 ## `sf open`
 
@@ -152,7 +170,7 @@ OPTIONS
   -s, --select  Select scratch org to open
 ```
 
-_See code: [src/commands/open.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/open.js)_
+_See code: [src/commands/open.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/open.js)_
 
 ## `sf switch`
 
@@ -166,7 +184,7 @@ OPTIONS
   -o, --open  Open the scratch org in the browser
 ```
 
-_See code: [src/commands/switch.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/switch.js)_
+_See code: [src/commands/switch.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/switch.js)_
 
 ## `sf test`
 
@@ -177,8 +195,8 @@ USAGE
   $ sf test
 
 OPTIONS
-  -s, --subject  Run tests in class (-s ClassName) or method (-s ClassName.Method)
+  -s, --subject=subject  Run method or class test
 ```
 
-_See code: [src/commands/test.js](https://github.com/matiasdelgado/sf-cli/blob/v0.1.0/src/commands/test.js)_
+_See code: [src/commands/test.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/test.js)_
 <!-- commandsstop -->
