@@ -15,4 +15,4 @@ InfoCommand.flags = {
   markdown: flags.boolean({ char: 'm', description: 'Generates MD code' })
 };
 
-module.exports = InfoCommand;
+module.exports = { InfoCommand };
