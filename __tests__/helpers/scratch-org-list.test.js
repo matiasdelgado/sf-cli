@@ -17,6 +17,7 @@ describe('Orgs list', () => {
     exec.mockResolvedValue({
       stdout: JSON.stringify({
         result: {
+          nonScratchOrgs: [],
           scratchOrgs: [
             {
               alias: 'my-alias',
@@ -40,6 +41,7 @@ describe('Orgs list', () => {
     exec.mockResolvedValue({
       stdout: JSON.stringify({
         result: {
+          nonScratchOrgs: [],
           scratchOrgs: []
         }
       })
