@@ -2,6 +2,7 @@ const inquirer = require('inquirer');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 const logger = require('./logger');
+const PRODUCTION = 'PRODUCTION';
 
 module.exports = { getScratchOrgs, listOrgs };
 
@@ -42,17 +43,22 @@ async function getScratchOrgs() {
   }
 
   const data = JSON.parse(stdout);
-  return data.result.scratchOrgs
-    .map(({ alias, instanceUrl, isDefaultUsername, expirationDate, username }) => ({
-      alias: alias || '',
-      instanceUrl,
-      isDefaultUsername,
-      expirationDate,
-      username
-    }))
+  return [...data.result.nonScratchOrgs, ...data.result.scratchOrgs]
+    .filter(org => org.alias !== PRODUCTION)
+    .map(mapOrgInfo)
     .sort((a, b) => {
       if (a.expirationDate < b.expirationDate) return -1;
       if (a.expirationDate > b.expirationDate) return 1;
       return 0;
     });
+}
+
+function mapOrgInfo({ alias, instanceUrl, isDefaultUsername, expirationDate, username }) {
+  return {
+    alias: alias || '',
+    instanceUrl,
+    isDefaultUsername,
+    expirationDate,
+    username
+  };
 }

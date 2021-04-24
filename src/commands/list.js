@@ -7,7 +7,7 @@ class ListCommand extends Command {
     const orgs = await getScratchOrgs();
     const aliasLength = Math.max(...orgs.map(org => (org.alias ? org.alias.length : 0)));
     orgs.forEach(org => {
-      const message = `${org.expirationDate} ${org.alias.padEnd(aliasLength)} ${org.instanceUrl}`;
+      const message = `${org.expirationDate || ''.padEnd(10)} ${org.alias.padEnd(aliasLength)} ${org.instanceUrl}`;
       if (org.isDefaultUsername) {
         this.log(chalk.blue(message));
       } else {
