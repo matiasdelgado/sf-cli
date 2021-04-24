@@ -1,12 +1,13 @@
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
+const logger = require('./logger');
 
 // force:source:push { forceoverwrite: true, json: true }
 async function sfdx(command, arguments_ = {}, options) {
-  const params = stringify(arguments_);
-  const { stderr, stdout } = await exec(`sfdx ${command} ${params}`, options);
+  const parameters = stringify(arguments_);
+  const { stderr, stdout } = await exec(`sfdx ${command} ${parameters}`, options);
   if (stderr && process.env.DEBUG) {
-    console.warn(stderr);
+    logger.warn(stderr);
   }
   return arguments_.json ? JSON.parse(stdout) : stdout;
 }
@@ -16,14 +17,16 @@ function stringify(arguments_) {
     return arguments_;
   }
 
-  const params = Object.keys(arguments_).reduce((acc, curr) => {
-    acc.push(`--${curr}`);
+  const parameters = Object.keys(arguments_).reduce((accumulator, current) => {
+    accumulator.push(`--${current}`);
 
-    if (arguments_[curr] !== true) {
-      acc.push(`"${arguments_[curr]}"`);
+    if (arguments_[current] !== true) {
+      accumulator.push(`"${arguments_[current]}"`);
     }
+
+    return accumulator;
   }, []);
-  return params.join(' ')
+  return parameters.join(' ');
 }
 
 module.exports = { sfdx };
