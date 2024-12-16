@@ -32,14 +32,14 @@ describe('ScratchOrg', () => {
       showInfo();
 
       expect(exec).toHaveBeenCalledTimes(1);
-      expect(exec.mock.calls[0][0]).toBe('sfdx force:org:display --json');
+      expect(exec.mock.calls[0][0]).toBe('sf org display --json');
     });
 
     it('should pass the alias/username to the command', async () => {
       showInfo(false, 'myAlias');
 
       expect(exec).toHaveBeenCalledTimes(1);
-      expect(exec.mock.calls[0][0]).toBe('sfdx force:org:display -u myAlias --json');
+      expect(exec.mock.calls[0][0]).toBe('sf org display -o myAlias --json');
     });
 
     it('should print raw info', async () => {
@@ -70,14 +70,14 @@ describe('ScratchOrg', () => {
       openOrg('myscratchorg');
 
       expect(exec).toHaveBeenCalledTimes(1);
-      expect(exec.mock.calls[0][0]).toBe('sfdx force:org:open -u myscratchorg');
+      expect(exec.mock.calls[0][0]).toBe('sf org open -o myscratchorg');
     });
 
     it('should not pass a user if missing', async () => {
       openOrg();
 
       expect(exec).toHaveBeenCalledTimes(1);
-      expect(exec.mock.calls[0][0]).toBe('sfdx force:org:open');
+      expect(exec.mock.calls[0][0]).toBe('sf org open');
     });
   });
 
@@ -86,14 +86,14 @@ describe('ScratchOrg', () => {
       deleteOrg('myscratchorg');
 
       expect(exec).toHaveBeenCalledTimes(1);
-      expect(exec.mock.calls[0][0]).toBe('sfdx force:org:delete -u myscratchorg --noprompt');
+      expect(exec.mock.calls[0][0]).toBe('sf org delete -o myscratchorg --noprompt');
     });
 
     it('should not pass a user if missing', async () => {
       deleteOrg();
 
       expect(exec).toHaveBeenCalledTimes(1);
-      expect(exec.mock.calls[0][0]).toBe('sfdx force:org:delete --noprompt');
+      expect(exec.mock.calls[0][0]).toBe('sf org delete --noprompt');
     });
   });
 
@@ -102,7 +102,7 @@ describe('ScratchOrg', () => {
       getInfo('myscratchorg');
 
       expect(exec).toHaveBeenCalledTimes(1);
-      expect(exec.mock.calls[0][0]).toBe('sfdx force:org:display -u myscratchorg --json');
+      expect(exec.mock.calls[0][0]).toBe('sf org display -o myscratchorg --json');
     });
 
     it('should parse the result', async () => {

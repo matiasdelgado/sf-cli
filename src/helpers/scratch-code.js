@@ -6,7 +6,7 @@ module.exports = handleCode;
 
 function pushToScratch() {
   try {
-    exec('sfdx force:source:push -f', { stdio: 'inherit' });
+    exec('sfdx project deploy start --ignore-conflicts', { stdio: 'inherit' });
     return 0;
   } catch (error) {
     return error.status || 1;

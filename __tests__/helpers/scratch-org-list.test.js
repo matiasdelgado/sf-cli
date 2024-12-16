@@ -33,7 +33,7 @@ describe('Orgs list', () => {
     const result = await listOrgs();
 
     expect(exec).toHaveBeenCalledTimes(1);
-    expect(exec.mock.calls[0][0]).toBe('sfdx force:org:list --json');
+    expect(exec.mock.calls[0][0]).toBe('sf org list --json');
     expect(result).toMatchObject({ username: 'cap' });
   });
 
@@ -50,7 +50,7 @@ describe('Orgs list', () => {
     await listOrgs();
 
     expect(exec).toHaveBeenCalledTimes(1);
-    expect(exec.mock.calls[0][0]).toBe('sfdx force:org:list --json');
+    expect(exec.mock.calls[0][0]).toBe('sf org list --json');
     expect(inquirer.prompt).not.toHaveBeenCalled();
   });
 });

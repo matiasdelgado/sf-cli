@@ -35,7 +35,7 @@ async function listOrgs(promptText = 'Open Scratch Org:') {
 }
 
 async function getScratchOrgs() {
-  const command = 'sfdx force:org:list --json';
+  const command = 'sf org list --json';
   const { stderr, stdout } = await exec(command);
 
   if (stderr) {

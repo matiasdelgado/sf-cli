@@ -34,21 +34,6 @@ brew install sf-cli
 * [`sf switch`](#sf-switch)
 * [`sf test`](#sf-test)
 
-## `sf `
-
-Push/pull source code
-
-```
-USAGE
-  $ sf
-
-OPTIONS
-  -l, --pull  Pull from scratch org
-  -p, --push  Push to scratch org
-```
-
-_See code: [src/commands/index.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/index.js)_
-
 ## `sf autocomplete [SHELL]`
 
 display autocomplete installation instructions
