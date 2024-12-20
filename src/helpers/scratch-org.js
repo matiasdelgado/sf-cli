@@ -8,7 +8,7 @@ module.exports = { deleteOrg, getInfo, showInfo, openOrg };
 
 function deleteOrg(username) {
   const userParameter = username ? ` -o ${username}` : '';
-  const command = `sf org delete${userParameter} --noprompt`;
+  const command = `sf org delete scratch${userParameter} --no-prompt`;
   return exec(command);
 }
 
@@ -56,7 +56,7 @@ function openOrg(username) {
 }
 
 function drawTable({ alias, username, password, instanceUrl, expirationDate }) {
-  logger.info(chalk.blue('Alias   :     '), alias || '');
+  logger.info(chalk.blue('Alias:        '), alias || '');
   logger.info(chalk.blue('Username:     '), username);
   if (password) {
     logger.info(chalk.blue('Password:     '), password);

@@ -1,5 +1,5 @@
 const { Command, Flags } = require('@oclif/core');
-const { login } = require('../helpers/scratch-log');
+const { login } = require('../helpers/scratch-org');
 
 class LoginCommand extends Command {
   static description = 'Log in to scratch org';
@@ -10,7 +10,7 @@ class LoginCommand extends Command {
 
   async run() {
     const { flags } = await this.parse(LoginCommand);
-    login(flags);
+    await login(flags);
   }
 }
 

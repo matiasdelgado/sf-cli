@@ -20,18 +20,17 @@ async function listOrgs(promptText = 'Open Scratch Org:') {
     return;
   }
 
-  const { instanceUrl } = await inquirer.prompt([
+  const { choice } = await inquirer.prompt([
     {
-      name: 'instanceUrl',
+      name: 'choice',
       message: promptText,
       type: 'list',
       choices
     }
   ]);
 
-  const index = choices.indexOf(instanceUrl);
-  const { username } = orgs[index];
-  return { instanceUrl, username };
+  const index = choices.indexOf(choice);
+  return orgs[index];
 }
 
 async function getScratchOrgs() {
