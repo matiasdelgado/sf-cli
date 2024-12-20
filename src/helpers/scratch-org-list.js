@@ -38,7 +38,7 @@ async function getScratchOrgs() {
   const command = 'sf org list --json';
   const { stderr, stdout } = await exec(command);
 
-  if (stderr) {
+  if (stderr && !stderr.includes('Warning')) {
     throw new Error(stderr);
   }
 
