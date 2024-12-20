@@ -9,7 +9,7 @@ jest.mock('../../src/helpers/logger');
 describe('Orgs list', () => {
   beforeEach(() => {
     inquirer.prompt.mockClear();
-    inquirer.prompt.mockResolvedValue({ instanceUrl: '1891-09-28 my-alias http://test-scratch.com *' });
+    inquirer.prompt.mockResolvedValue({ choice: '1891-09-28 my-alias http://test-scratch.com *' });
     exec.mockClear();
   });
 

@@ -1,3 +1,1 @@
-module.exports = {
-  exec: jest.fn().mockResolvedValue(null)
-};
+module.exports.exec: jest.fn().mockResolvedValue(null);

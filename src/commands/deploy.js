@@ -6,7 +6,7 @@ class DeployCommand extends Command {
 
   async run() {
     const result = handleCode({ push: true });
-    this.exit(result);
+    return result;
   }
 }
 

@@ -4,7 +4,7 @@ const { logout } = require('../helpers/scratch-org');
 class LogoutCommand extends Command {
   static description = 'Log out from scratch org';
   static flags = {
-    alias: Flags.string({ char: 'a', description: 'Alias or username' })
+    alias: Flags.string({ char: 'a', required: true, description: 'Alias or username' })
   };
 
   async run() {

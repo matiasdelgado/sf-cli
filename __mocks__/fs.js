@@ -1,3 +1,1 @@
-module.exports = {
-  existsSync: () => true
-};
+module.exports.existsSync: () => true;

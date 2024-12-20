@@ -4,7 +4,14 @@ const exec = util.promisify(require('child_process').exec);
 const isSalesforceProject = require('./context-validation');
 const logger = require('./logger');
 
-module.exports = { deleteOrg, getInfo, showInfo, openOrg };
+module.exports = {
+  deleteOrg,
+  getInfo,
+  login,
+  logout,
+  openOrg,
+  showInfo
+};
 
 function deleteOrg(username) {
   const userParameter = username ? ` -o ${username}` : '';
@@ -78,13 +85,13 @@ function drawMarkdownTable({ username, password, instanceUrl, expirationDate }) 
 
 async function logout({ alias }) {
   const userParameter = alias ? `-o ${alias}` : '';
-  const logoutCmd = `sf auth logout ${userParameter}`;
+  const logoutCmd = `sf auth logout ${userParameter} --no-prompt`;
   process.stdout.write('Logging out from scratch org'); // write message and do not add a CRLF
-  return await exec(logoutCmd);
+  await exec(logoutCmd);
 }
 
 async function login({ url, alias }) {
   const loginCmd = `sf org login web --instance-url ${url} --alias ${alias}`;
   process.stdout.write('Logging in to scratch org');
-  return await exec(loginCmd);
+  await exec(loginCmd);
 }

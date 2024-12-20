@@ -6,17 +6,26 @@ const { listOrgs } = require('../helpers/scratch-org-list');
 class OpenCommand extends Command {
   static description = 'Open the default scratch org in the browser or by picking from the list of available orgs.';
   static flags = {
+    alias: Flags.string({ char: 'a', description: 'Alias or username of the org to open' }),
     select: Flags.boolean({ char: 's', description: 'Select scratch org to open' })
   };
 
   async run() {
     const { flags } = await this.parse(OpenCommand);
-    if (!isSalesforceProject() && !flags.select) {
+    if (!isSalesforceProject()) {
       this.log('This command is required to run from within an SFDX project.');
       return;
     }
 
-    return flags.select ? listOrgs().then(({ username }) => openOrg(username)) : openOrg();
+    if (flags.alias) {
+      return await openOrg(alias);
+    }
+
+    if (flags.select) {
+      return listOrgs().then(({ username }) => openOrg(username))
+    }
+
+    return openOrg();
   }
 }
 

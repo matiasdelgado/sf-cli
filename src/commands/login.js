@@ -4,8 +4,8 @@ const { login } = require('../helpers/scratch-org');
 class LoginCommand extends Command {
   static description = 'Log in to scratch org';
   static flags = {
-    alias: Flags.string({ char: 'a', description: 'Alias or username' }),
-    url: Flags.string({ char: 'u', description: 'Instance URL' }),
+    alias: Flags.string({ char: 'a', required: true, description: 'Alias or username' }),
+    url: Flags.string({ char: 'u', required: true, description: 'Instance URL' }),
   };
 
   async run() {

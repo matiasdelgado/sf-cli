@@ -1,4 +1,4 @@
-const { Command, Flags } = require('@oclif/core');
+const { Args, Command, Flags } = require('@oclif/core');
 const isSalesforceProject = require('../helpers/context-validation');
 const { openOrg } = require('../helpers/scratch-org');
 const { listOrgs } = require('../helpers/scratch-org-list');
@@ -6,27 +6,32 @@ const { setDefault } = require('../helpers/scratch-config');
 
 class SwitchCommand extends Command {
   static description = 'Change the default scratch org';
+  static args = {
+    alias: Args.string()
+  }
   static flags = {
     open: Flags.boolean({ char: 'o', description: 'Open the scratch org in the browser' })
   };
 
   async run() {
-    const { flags } = await this.parse(SwitchCommand);
+    const { args, flags } = await this.parse(SwitchCommand);
     const isProject = isSalesforceProject();
 
     if (!isProject) {
       this.log('This folder is not a salesforce solution, cannot switch the scratch orgs.');
-      if (!flags.open) {
-        return;
-      }
+      return;
     }
 
-    const { username } = await listOrgs('Choose Scratch Org:');
-    if (isProject) {
-      await setDefault(username);
+    let alias = args.alias;
+    if (!alias) {
+      const { username } = await listOrgs('Choose Scratch Org:');
+      alias = username;
     }
+
+    await setDefault(alias);
+    this.log(`Scratch org ${alias} marked as default`);
     if (flags.open) {
-      await openOrg(username);
+      await openOrg(alias);
     }
   }
 }

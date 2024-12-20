@@ -1,5 +1,5 @@
 const exec = require('child_process').exec;
-const { deleteOrg, getInfo, openOrg, showInfo } = require('../../src/helpers/scratch-org');
+const { deleteOrg, getInfo, login, logout, openOrg, showInfo } = require('../../src/helpers/scratch-org');
 const logger = require('../../src/helpers/logger');
 
 jest.mock('child_process');
@@ -86,14 +86,14 @@ describe('ScratchOrg', () => {
       deleteOrg('myscratchorg');
 
       expect(exec).toHaveBeenCalledTimes(1);
-      expect(exec.mock.calls[0][0]).toBe('sf org delete -o myscratchorg --noprompt');
+      expect(exec.mock.calls[0][0]).toBe('sf org delete scratch -o myscratchorg --no-prompt');
     });
 
     it('should not pass a user if missing', async () => {
       deleteOrg();
 
       expect(exec).toHaveBeenCalledTimes(1);
-      expect(exec.mock.calls[0][0]).toBe('sf org delete --noprompt');
+      expect(exec.mock.calls[0][0]).toBe('sf org delete scratch --no-prompt');
     });
   });
 
@@ -120,6 +120,33 @@ describe('ScratchOrg', () => {
 
       const result = await getInfo('myscratchorg');
       expect(result).toMatchObject(user);
+    });
+  });
+
+  describe('Login', () => {
+    it('should pass the url and alias to the command', async () => {
+      const input = { url: 'http://example.com', alias: 'myOrg' };
+      await login(input);
+
+      expect(exec).toHaveBeenCalledTimes(1);
+      expect(exec.mock.calls[0][0]).toBe(`sf org login web --instance-url ${input.url} --alias ${input.alias}`);
+    });
+  });
+
+  describe('Logout', () => {
+    it('should pass the alias to the command', async () => {
+      const input = { alias: 'myOrg' };
+      await logout(input);
+
+      expect(exec).toHaveBeenCalledTimes(1);
+      expect(exec.mock.calls[0][0]).toBe(`sf auth logout -o ${input.alias} --no-prompt`);
+    });
+
+    it('shoud logout from the default org', async () => {
+      await logout({});
+
+      expect(exec).toHaveBeenCalledTimes(1);
+      expect(exec.mock.calls[0][0]).toBe(`sf auth logout  --no-prompt`);
     });
   });
 });
