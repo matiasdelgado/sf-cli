@@ -1,9 +1,14 @@
-const { Command, flags } = require('@oclif/command');
+const { Command, Flags } = require('@oclif/core');
 const { runTestMethod, runTestClass } = require('../helpers/server-tests');
 
 class TestCommand extends Command {
+  static description = 'Run tests by class or method name';
+  static flags = {
+    subject: Flags.string({ char: 's', description: 'Run method or class test' })
+  };
+
   async run() {
-    const { flags } = this.parse(TestCommand);
+    const { flags } = await this.parse(TestCommand);
 
     if (flags.subject.indexOf('.') > 0) {
       return runTestMethod(flags.subject);
@@ -12,11 +17,5 @@ class TestCommand extends Command {
     return runTestClass(flags.subject);
   }
 }
-
-TestCommand.description = 'Run tests by class or method name';
-
-TestCommand.flags = {
-  subject: flags.string({ char: 's', description: 'Run method or class test' })
-};
 
 module.exports = TestCommand;

@@ -1,8 +1,10 @@
 const chalk = require('chalk');
-const { Command } = require('@oclif/command');
+const { Command } = require('@oclif/core');
 const { getScratchOrgs } = require('../helpers/scratch-org-list');
 
 class ListCommand extends Command {
+  static description = 'List all available scratch orgs.';
+
   async run() {
     const orgs = await getScratchOrgs();
     const aliasLength = Math.max(...orgs.map(org => (org.alias ? org.alias.length : 0)));
@@ -16,9 +18,5 @@ class ListCommand extends Command {
     });
   }
 }
-
-ListCommand.description = 'List all available scratch orgs.';
-
-ListCommand.flags = {};
 
 module.exports = ListCommand;

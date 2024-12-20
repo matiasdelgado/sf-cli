@@ -1,12 +1,17 @@
-const { Command, flags } = require('@oclif/command');
+const { Command, Flags } = require('@oclif/core');
 const isSalesforceProject = require('../helpers/context-validation');
 const { openOrg } = require('../helpers/scratch-org');
 const { listOrgs } = require('../helpers/scratch-org-list');
 const { setDefault } = require('../helpers/scratch-config');
 
 class SwitchCommand extends Command {
+  static description = 'Change the default scratch org';
+  static flags = {
+    open: Flags.boolean({ char: 'o', description: 'Open the scratch org in the browser' })
+  };
+
   async run() {
-    const { flags } = this.parse(SwitchCommand);
+    const { flags } = await this.parse(SwitchCommand);
     const isProject = isSalesforceProject();
 
     if (!isProject) {
@@ -25,11 +30,5 @@ class SwitchCommand extends Command {
     }
   }
 }
-
-SwitchCommand.description = 'Change the default scratch org';
-
-SwitchCommand.flags = {
-  open: flags.boolean({ char: 'o', description: 'Open the scratch org in the browser' })
-};
 
 module.exports = SwitchCommand;
