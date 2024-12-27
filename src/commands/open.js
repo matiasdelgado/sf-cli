@@ -4,7 +4,6 @@ const { openOrg } = require('../helpers/scratch-org');
 const { listOrgs } = require('../helpers/scratch-org-list');
 
 class OpenCommand extends Command {
-  static description = 'Open the default scratch org in the browser or by picking from the list of available orgs.';
   static flags = {
     alias: Flags.string({ char: 'a', description: 'Alias or username of the org to open' }),
     select: Flags.boolean({ char: 's', description: 'Select scratch org to open' })
@@ -18,15 +17,17 @@ class OpenCommand extends Command {
     }
 
     if (flags.alias) {
-      return await openOrg(alias);
+      return openOrg(flags.alias);
     }
 
     if (flags.select) {
-      return listOrgs().then(({ username }) => openOrg(username))
+      return listOrgs().then(({ username }) => openOrg(username));
     }
 
     return openOrg();
   }
 }
+
+OpenCommand.description = 'Open the default scratch org in the browser or by picking from the list of available orgs.';
 
 module.exports = OpenCommand;

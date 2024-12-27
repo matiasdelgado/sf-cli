@@ -2,7 +2,6 @@ const { Command, Flags } = require('@oclif/core');
 const { logout } = require('../helpers/scratch-org');
 
 class LogoutCommand extends Command {
-  static description = 'Log out from scratch org';
   static flags = {
     alias: Flags.string({ char: 'a', required: true, description: 'Alias or username' })
   };
@@ -12,5 +11,7 @@ class LogoutCommand extends Command {
     await logout(flags);
   }
 }
+
+LogoutCommand.description = 'Log out from scratch org';
 
 module.exports = LogoutCommand;

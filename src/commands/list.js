@@ -3,8 +3,6 @@ const { Command } = require('@oclif/core');
 const { getScratchOrgs } = require('../helpers/scratch-org-list');
 
 class ListCommand extends Command {
-  static description = 'List all available scratch orgs.';
-
   async run() {
     const orgs = await getScratchOrgs();
     const aliasLength = Math.max(...orgs.map(org => (org.alias ? org.alias.length : 0)));
@@ -13,22 +11,24 @@ class ListCommand extends Command {
     renderLine('Expiration ', 'Alias', 'Scratch Org URL');
     renderLine('---------- ', '-----', '---------------');
 
-    orgs.forEach(org => {
+    for (const org of orgs) {
       renderLine(org.expirationDate, org.alias, org.instanceUrl, org.isDefaultUsername);
-    });
+    }
   }
 
   renderLineGenerator(expirationLength, aliasLength) {
-    const _this = this;
-    return function renderLine(expirationDate, alias, instanceUrl, isDefaultUsername) {
+    const { log } = this;
+    return function (expirationDate, alias, instanceUrl, isDefaultUsername) {
       const message = `${alias.padEnd(aliasLength)} ${(expirationDate || '').padEnd(expirationLength)} ${instanceUrl}`;
       if (isDefaultUsername) {
-        _this.log(chalk.blue(message));
+        log(chalk.blue(message));
       } else {
-        _this.log(message);
+        log(message);
       }
-    }
+    };
   }
 }
+
+ListCommand.description = 'List all available scratch orgs.';
 
 module.exports = ListCommand;

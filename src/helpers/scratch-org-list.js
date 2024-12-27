@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+const { promisify } = require('node:util');
+const exec = promisify(require('node:child_process').exec);
 const logger = require('./logger');
 const PRODUCTION = 'PRODUCTION';
 
@@ -44,7 +44,7 @@ async function getScratchOrgs() {
   const data = JSON.parse(stdout);
   return [...data.result.nonScratchOrgs, ...data.result.scratchOrgs]
     .filter(org => org.alias !== PRODUCTION)
-    .map(mapOrgInfo)
+    .map(o => mapOrgInfo(o))
     .sort((a, b) => {
       if (a.expirationDate < b.expirationDate) return -1;
       if (a.expirationDate > b.expirationDate) return 1;

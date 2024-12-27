@@ -1,4 +1,4 @@
-const spawn = require('child_process').spawn;
+const { spawn } = require('node:child_process');
 
 module.exports = showLogs;
 

@@ -5,10 +5,10 @@ const { listOrgs } = require('../helpers/scratch-org-list');
 const { setDefault } = require('../helpers/scratch-config');
 
 class SwitchCommand extends Command {
-  static description = 'Change the default scratch org';
   static args = {
     alias: Args.string()
-  }
+  };
+
   static flags = {
     open: Flags.boolean({ char: 'o', description: 'Open the scratch org in the browser' })
   };
@@ -22,7 +22,7 @@ class SwitchCommand extends Command {
       return;
     }
 
-    let alias = args.alias;
+    let { alias } = args;
     if (!alias) {
       const { username } = await listOrgs('Choose Scratch Org:');
       alias = username;
@@ -35,5 +35,7 @@ class SwitchCommand extends Command {
     }
   }
 }
+
+SwitchCommand.description = 'Change the default scratch org';
 
 module.exports = SwitchCommand;

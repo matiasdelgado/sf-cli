@@ -1,5 +1,5 @@
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+const { promisify } = require('node:util');
+const exec = promisify(require('node:child_process').exec);
 
 function setDefault(username) {
   const setCommand = `sf config set target-org ${username}`;

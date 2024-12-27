@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const exec = require('child_process').exec;
+const { exec } = require('node:child_process');
 const { listOrgs } = require('../../src/helpers/scratch-org-list');
 
 jest.mock('child_process');

@@ -32,7 +32,7 @@
     "prettier": "^3.4.2"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=8.3.0"
   },
   "files": [
     "/bin",

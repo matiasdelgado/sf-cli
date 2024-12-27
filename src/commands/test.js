@@ -2,7 +2,6 @@ const { Command, Args } = require('@oclif/core');
 const { runTestMethod, runTestClass } = require('../helpers/server-tests');
 
 class TestCommand extends Command {
-  static description = 'Run tests by class or method name';
   static args = {
     subject: Args.string()
   };
@@ -17,5 +16,7 @@ class TestCommand extends Command {
     return runTestClass(args.subject);
   }
 }
+
+TestCommand.description = 'Run tests by class or method name';
 
 module.exports = TestCommand;

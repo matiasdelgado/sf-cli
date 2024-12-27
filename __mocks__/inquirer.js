@@ -1,1 +1,1 @@
-module.exports.prompt: jest.fn();
+module.exports.prompt = jest.fn();

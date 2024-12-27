@@ -4,7 +4,6 @@ const { listOrgs } = require('../helpers/scratch-org-list');
 const { deleteOrg, getInfo } = require('../helpers/scratch-org');
 
 class DeleteCommand extends Command {
-  static description = 'Delete scratch org';
   static flags = {
     select: Flags.boolean({ char: 's', description: 'Select scratch org to delete' })
   };
@@ -27,5 +26,7 @@ class DeleteCommand extends Command {
     }
   }
 }
+
+DeleteCommand.description = 'Delete scratch org';
 
 module.exports = DeleteCommand;

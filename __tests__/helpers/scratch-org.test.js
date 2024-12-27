@@ -1,4 +1,4 @@
-const exec = require('child_process').exec;
+const { exec } = require('node:child_process');
 const { deleteOrg, getInfo, login, logout, openOrg, showInfo } = require('../../src/helpers/scratch-org');
 const logger = require('../../src/helpers/logger');
 

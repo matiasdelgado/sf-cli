@@ -1,4 +1,4 @@
-const exec = require('child_process').execSync;
+const exec = require('node:child_process').execSync;
 const isSalesforceProject = require('./context-validation');
 const logger = require('./logger');
 
@@ -41,6 +41,7 @@ function handleCode({ pull, push }) {
   if (push) {
     return pushToScratch();
   }
+
   if (pull) {
     return pullFromScratch();
   }

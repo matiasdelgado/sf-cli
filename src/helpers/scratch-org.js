@@ -1,6 +1,6 @@
 const chalk = require('chalk');
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+const { promisify } = require('node:util');
+const exec = promisify(require('node:child_process').exec);
 const isSalesforceProject = require('./context-validation');
 const logger = require('./logger');
 
@@ -33,7 +33,6 @@ async function showInfo(markdown, alias) {
       drawTable(info);
     }
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(error);
   }
 }
@@ -44,7 +43,6 @@ async function getInfo(user = null) {
   const { stderr, stdout } = await exec(command);
 
   if (stderr) {
-    // eslint-disable-next-line no-console
     console.error(stderr);
   }
 
@@ -68,6 +66,7 @@ function drawTable({ alias, username, password, instanceUrl, expirationDate }) {
   if (password) {
     logger.info(chalk.blue('Password:     '), password);
   }
+
   logger.info(chalk.blue('Instance Url: '), instanceUrl);
   logger.info(chalk.blue('Expiration:   '), expirationDate);
 }
@@ -77,8 +76,9 @@ function drawMarkdownTable({ username, password, instanceUrl, expirationDate }) 
   logger.info('|:---         |:---');
   logger.info('|Username     |', username);
   if (password) {
-    logger.info('|Password     |', password ? password.replace(/\|/g, '\\|') : '');
+    logger.info('|Password     |', password ? password.replaceAll('|', String.raw`\|`) : '');
   }
+
   logger.info('|Instance Url |', instanceUrl);
   logger.info('|Expiration   |', expirationDate);
 }

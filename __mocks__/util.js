@@ -1,1 +1,1 @@
-module.exports.promisify: value => value;
+module.exports.promisify = value => value;
