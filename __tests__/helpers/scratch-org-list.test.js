@@ -2,7 +2,7 @@ const inquirer = require('inquirer');
 const { exec } = require('node:child_process');
 const { listOrgs } = require('../../src/helpers/scratch-org-list');
 
-jest.mock('child_process');
+jest.mock('node:child_process');
 jest.mock('util');
 jest.mock('../../src/helpers/logger');
 

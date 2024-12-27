@@ -1,6 +1,5 @@
 const chalk = require('chalk');
-const { promisify } = require('node:util');
-const exec = promisify(require('node:child_process').exec);
+const { exec } = require('node:child_process');
 const isSalesforceProject = require('./context-validation');
 const logger = require('./logger');
 
@@ -87,11 +86,11 @@ async function logout({ alias }) {
   const userParameter = alias ? `-o ${alias}` : '';
   const logoutCmd = `sf auth logout ${userParameter} --no-prompt`;
   process.stdout.write('Logging out from scratch org'); // write message and do not add a CRLF
-  await exec(logoutCmd);
+  return exec(logoutCmd);
 }
 
 async function login({ url, alias }) {
   const loginCmd = `sf org login web --instance-url ${url} --alias ${alias}`;
   process.stdout.write('Logging in to scratch org');
-  await exec(loginCmd);
+  return exec(loginCmd);
 }

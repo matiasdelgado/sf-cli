@@ -2,8 +2,8 @@ const { exec } = require('node:child_process');
 const { deleteOrg, getInfo, login, logout, openOrg, showInfo } = require('../../src/helpers/scratch-org');
 const logger = require('../../src/helpers/logger');
 
-jest.mock('child_process');
-jest.mock('fs');
+jest.mock('node:child_process');
+jest.mock('node:fs');
 jest.mock('util');
 jest.mock('../../src/helpers/logger');
 
@@ -29,14 +29,14 @@ describe('ScratchOrg', () => {
     });
 
     it('should retrieve info from SF', async () => {
-      showInfo();
+      await showInfo();
 
       expect(exec).toHaveBeenCalledTimes(1);
       expect(exec.mock.calls[0][0]).toBe('sf org display --json');
     });
 
     it('should pass the alias/username to the command', async () => {
-      showInfo(false, 'myAlias');
+      await showInfo(false, 'myAlias');
 
       expect(exec).toHaveBeenCalledTimes(1);
       expect(exec.mock.calls[0][0]).toBe('sf org display -o myAlias --json');
