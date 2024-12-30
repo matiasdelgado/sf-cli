@@ -22,55 +22,52 @@ brew install sf-cli
 
 # Commands
 <!-- commands -->
-* [`sf `](#sf-)
 * [`sf autocomplete [SHELL]`](#sf-autocomplete-shell)
 * [`sf code`](#sf-code)
 * [`sf delete`](#sf-delete)
+* [`sf deploy`](#sf-deploy)
 * [`sf help [COMMAND]`](#sf-help-command)
 * [`sf info`](#sf-info)
 * [`sf list`](#sf-list)
 * [`sf log`](#sf-log)
+* [`sf login`](#sf-login)
+* [`sf logout`](#sf-logout)
 * [`sf open`](#sf-open)
-* [`sf switch`](#sf-switch)
-* [`sf test`](#sf-test)
-
-## `sf `
-
-Push/pull source code
-
-```
-USAGE
-  $ sf
-
-OPTIONS
-  -l, --pull  Pull from scratch org
-  -p, --push  Push to scratch org
-```
-
-_See code: [src/commands/index.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/index.js)_
+* [`sf pull`](#sf-pull)
+* [`sf switch [ALIAS]`](#sf-switch-alias)
+* [`sf test [SUBJECT]`](#sf-test-subject)
+* [`sf version`](#sf-version)
 
 ## `sf autocomplete [SHELL]`
 
-display autocomplete installation instructions
+Display autocomplete installation instructions.
 
 ```
 USAGE
-  $ sf autocomplete [SHELL]
+  $ sf autocomplete [SHELL] [-r]
 
 ARGUMENTS
-  SHELL  shell type
+  SHELL  (zsh|bash|powershell) Shell type
 
-OPTIONS
+FLAGS
   -r, --refresh-cache  Refresh cache (ignores displaying instructions)
+
+DESCRIPTION
+  Display autocomplete installation instructions.
 
 EXAMPLES
   $ sf autocomplete
+
   $ sf autocomplete bash
+
   $ sf autocomplete zsh
+
+  $ sf autocomplete powershell
+
   $ sf autocomplete --refresh-cache
 ```
 
-_See code: [@oclif/plugin-autocomplete](https://github.com/oclif/plugin-autocomplete/blob/v0.1.5/src/commands/autocomplete/index.ts)_
+_See code: [@oclif/plugin-autocomplete](https://github.com/oclif/plugin-autocomplete/blob/v3.2.14/src/commands/autocomplete/index.ts)_
 
 ## `sf code`
 
@@ -78,14 +75,17 @@ Push/pull source code
 
 ```
 USAGE
-  $ sf code
+  $ sf code [-l] [-p]
 
-OPTIONS
+FLAGS
   -l, --pull  Pull from scratch org
   -p, --push  Push to scratch org
+
+DESCRIPTION
+  Push/pull source code
 ```
 
-_See code: [src/commands/code.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/code.js)_
+_See code: [src/commands/code.js](https://github.com/matiasdelgado/sf-cli/blob/v3.2.0/src/commands/code.js)_
 
 ## `sf delete`
 
@@ -93,30 +93,50 @@ Delete scratch org
 
 ```
 USAGE
-  $ sf delete
+  $ sf delete [-s]
 
-OPTIONS
+FLAGS
   -s, --select  Select scratch org to delete
+
+DESCRIPTION
+  Delete scratch org
 ```
 
-_See code: [src/commands/delete.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/delete.js)_
+_See code: [src/commands/delete.js](https://github.com/matiasdelgado/sf-cli/blob/v3.2.0/src/commands/delete.js)_
 
-## `sf help [COMMAND]`
+## `sf deploy`
 
-display help for sf
+Push source code
 
 ```
 USAGE
-  $ sf help [COMMAND]
+  $ sf deploy
 
-ARGUMENTS
-  COMMAND  command to show help for
-
-OPTIONS
-  --all  see all commands in CLI
+DESCRIPTION
+  Push source code
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src/commands/help.ts)_
+_See code: [src/commands/deploy.js](https://github.com/matiasdelgado/sf-cli/blob/v3.2.0/src/commands/deploy.js)_
+
+## `sf help [COMMAND]`
+
+Display help for sf.
+
+```
+USAGE
+  $ sf help [COMMAND...] [-n]
+
+ARGUMENTS
+  COMMAND...  Command to show help for.
+
+FLAGS
+  -n, --nested-commands  Include all nested commands in the output.
+
+DESCRIPTION
+  Display help for sf.
+```
+
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v6.2.19/src/commands/help.ts)_
 
 ## `sf info`
 
@@ -124,14 +144,17 @@ Display current scratch org information
 
 ```
 USAGE
-  $ sf info
+  $ sf info [-a <value>] [-m]
 
-OPTIONS
-  -a, --alias=alias  Alias or username
-  -m, --markdown     Generates MD code
+FLAGS
+  -a, --alias=<value>  Alias or username
+  -m, --markdown       Generates MD code
+
+DESCRIPTION
+  Display current scratch org information
 ```
 
-_See code: [src/commands/info.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/info.js)_
+_See code: [src/commands/info.js](https://github.com/matiasdelgado/sf-cli/blob/v3.2.0/src/commands/info.js)_
 
 ## `sf list`
 
@@ -140,9 +163,12 @@ List all available scratch orgs.
 ```
 USAGE
   $ sf list
+
+DESCRIPTION
+  List all available scratch orgs.
 ```
 
-_See code: [src/commands/list.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/list.js)_
+_See code: [src/commands/list.js](https://github.com/matiasdelgado/sf-cli/blob/v3.2.0/src/commands/list.js)_
 
 ## `sf log`
 
@@ -150,13 +176,51 @@ Show remote logs
 
 ```
 USAGE
-  $ sf log
+  $ sf log [-d]
 
-OPTIONS
+FLAGS
   -d, --debug  Show debug messages only
+
+DESCRIPTION
+  Show remote logs
 ```
 
-_See code: [src/commands/log.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/log.js)_
+_See code: [src/commands/log.js](https://github.com/matiasdelgado/sf-cli/blob/v3.2.0/src/commands/log.js)_
+
+## `sf login`
+
+Log in to scratch org
+
+```
+USAGE
+  $ sf login -a <value> -u <value>
+
+FLAGS
+  -a, --alias=<value>  (required) Alias or username
+  -u, --url=<value>    (required) Instance URL
+
+DESCRIPTION
+  Log in to scratch org
+```
+
+_See code: [src/commands/login.js](https://github.com/matiasdelgado/sf-cli/blob/v3.2.0/src/commands/login.js)_
+
+## `sf logout`
+
+Log out from scratch org
+
+```
+USAGE
+  $ sf logout -a <value>
+
+FLAGS
+  -a, --alias=<value>  (required) Alias or username
+
+DESCRIPTION
+  Log out from scratch org
+```
+
+_See code: [src/commands/logout.js](https://github.com/matiasdelgado/sf-cli/blob/v3.2.0/src/commands/logout.js)_
 
 ## `sf open`
 
@@ -164,39 +228,80 @@ Open the default scratch org in the browser or by picking from the list of avail
 
 ```
 USAGE
-  $ sf open
+  $ sf open [-a <value>] [-s]
 
-OPTIONS
-  -s, --select  Select scratch org to open
+FLAGS
+  -a, --alias=<value>  Alias or username of the org to open
+  -s, --select         Select scratch org to open
+
+DESCRIPTION
+  Open the default scratch org in the browser or by picking from the list of available orgs.
 ```
 
-_See code: [src/commands/open.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/open.js)_
+_See code: [src/commands/open.js](https://github.com/matiasdelgado/sf-cli/blob/v3.2.0/src/commands/open.js)_
 
-## `sf switch`
+## `sf pull`
+
+Pull source code
+
+```
+USAGE
+  $ sf pull
+
+DESCRIPTION
+  Pull source code
+```
+
+_See code: [src/commands/pull.js](https://github.com/matiasdelgado/sf-cli/blob/v3.2.0/src/commands/pull.js)_
+
+## `sf switch [ALIAS]`
 
 Change the default scratch org
 
 ```
 USAGE
-  $ sf switch
+  $ sf switch [ALIAS] [-o]
 
-OPTIONS
+FLAGS
   -o, --open  Open the scratch org in the browser
+
+DESCRIPTION
+  Change the default scratch org
 ```
 
-_See code: [src/commands/switch.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/switch.js)_
+_See code: [src/commands/switch.js](https://github.com/matiasdelgado/sf-cli/blob/v3.2.0/src/commands/switch.js)_
 
-## `sf test`
+## `sf test [SUBJECT]`
 
 Run tests by class or method name
 
 ```
 USAGE
-  $ sf test
+  $ sf test [SUBJECT]
 
-OPTIONS
-  -s, --subject=subject  Run method or class test
+DESCRIPTION
+  Run tests by class or method name
 ```
 
-_See code: [src/commands/test.js](https://github.com/matiasdelgado/sf-cli/blob/v3.1.0/src/commands/test.js)_
+_See code: [src/commands/test.js](https://github.com/matiasdelgado/sf-cli/blob/v3.2.0/src/commands/test.js)_
+
+## `sf version`
+
+```
+USAGE
+  $ sf version [--json] [--verbose]
+
+FLAGS
+  --verbose  Show additional information about the CLI.
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+FLAG DESCRIPTIONS
+  --verbose  Show additional information about the CLI.
+
+    Additionally shows the architecture, node version, operating system, and versions of plugins that the CLI is using.
+```
+
+_See code: [@oclif/plugin-version](https://github.com/oclif/plugin-version/blob/v2.2.18/src/commands/version.ts)_
 <!-- commandsstop -->

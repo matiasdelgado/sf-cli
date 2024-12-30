@@ -1,9 +1,9 @@
-const exec = require('child_process').exec;
-const { deleteOrg, getInfo, openOrg, showInfo } = require('../../src/helpers/scratch-org');
+const { exec } = require('node:child_process');
+const { deleteOrg, getInfo, login, logout, openOrg, showInfo } = require('../../src/helpers/scratch-org');
 const logger = require('../../src/helpers/logger');
 
-jest.mock('child_process');
-jest.mock('fs');
+jest.mock('node:child_process');
+jest.mock('node:fs');
 jest.mock('util');
 jest.mock('../../src/helpers/logger');
 
@@ -29,17 +29,17 @@ describe('ScratchOrg', () => {
     });
 
     it('should retrieve info from SF', async () => {
-      showInfo();
+      await showInfo();
 
       expect(exec).toHaveBeenCalledTimes(1);
-      expect(exec.mock.calls[0][0]).toBe('sfdx force:org:display --json');
+      expect(exec.mock.calls[0][0]).toBe('sf org display --json');
     });
 
     it('should pass the alias/username to the command', async () => {
-      showInfo(false, 'myAlias');
+      await showInfo(false, 'myAlias');
 
       expect(exec).toHaveBeenCalledTimes(1);
-      expect(exec.mock.calls[0][0]).toBe('sfdx force:org:display -u myAlias --json');
+      expect(exec.mock.calls[0][0]).toBe('sf org display -o myAlias --json');
     });
 
     it('should print raw info', async () => {
@@ -70,14 +70,14 @@ describe('ScratchOrg', () => {
       openOrg('myscratchorg');
 
       expect(exec).toHaveBeenCalledTimes(1);
-      expect(exec.mock.calls[0][0]).toBe('sfdx force:org:open -u myscratchorg');
+      expect(exec.mock.calls[0][0]).toBe('sf org open -o myscratchorg');
     });
 
     it('should not pass a user if missing', async () => {
       openOrg();
 
       expect(exec).toHaveBeenCalledTimes(1);
-      expect(exec.mock.calls[0][0]).toBe('sfdx force:org:open');
+      expect(exec.mock.calls[0][0]).toBe('sf org open');
     });
   });
 
@@ -86,14 +86,14 @@ describe('ScratchOrg', () => {
       deleteOrg('myscratchorg');
 
       expect(exec).toHaveBeenCalledTimes(1);
-      expect(exec.mock.calls[0][0]).toBe('sfdx force:org:delete -u myscratchorg --noprompt');
+      expect(exec.mock.calls[0][0]).toBe('sf org delete scratch -o myscratchorg --no-prompt');
     });
 
     it('should not pass a user if missing', async () => {
       deleteOrg();
 
       expect(exec).toHaveBeenCalledTimes(1);
-      expect(exec.mock.calls[0][0]).toBe('sfdx force:org:delete --noprompt');
+      expect(exec.mock.calls[0][0]).toBe('sf org delete scratch --no-prompt');
     });
   });
 
@@ -102,7 +102,7 @@ describe('ScratchOrg', () => {
       getInfo('myscratchorg');
 
       expect(exec).toHaveBeenCalledTimes(1);
-      expect(exec.mock.calls[0][0]).toBe('sfdx force:org:display -u myscratchorg --json');
+      expect(exec.mock.calls[0][0]).toBe('sf org display -o myscratchorg --json');
     });
 
     it('should parse the result', async () => {
@@ -120,6 +120,33 @@ describe('ScratchOrg', () => {
 
       const result = await getInfo('myscratchorg');
       expect(result).toMatchObject(user);
+    });
+  });
+
+  describe('Login', () => {
+    it('should pass the url and alias to the command', async () => {
+      const input = { url: 'http://example.com', alias: 'myOrg' };
+      await login(input);
+
+      expect(exec).toHaveBeenCalledTimes(1);
+      expect(exec.mock.calls[0][0]).toBe(`sf org login web --instance-url ${input.url} --alias ${input.alias}`);
+    });
+  });
+
+  describe('Logout', () => {
+    it('should pass the alias to the command', async () => {
+      const input = { alias: 'myOrg' };
+      await logout(input);
+
+      expect(exec).toHaveBeenCalledTimes(1);
+      expect(exec.mock.calls[0][0]).toBe(`sf auth logout -o ${input.alias} --no-prompt`);
+    });
+
+    it('shoud logout from the default org', async () => {
+      await logout({});
+
+      expect(exec).toHaveBeenCalledTimes(1);
+      expect(exec.mock.calls[0][0]).toBe(`sf auth logout  --no-prompt`);
     });
   });
 });

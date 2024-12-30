@@ -1,15 +1,15 @@
 const inquirer = require('inquirer');
-const exec = require('child_process').exec;
+const { exec } = require('node:child_process');
 const { listOrgs } = require('../../src/helpers/scratch-org-list');
 
-jest.mock('child_process');
+jest.mock('node:child_process');
 jest.mock('util');
 jest.mock('../../src/helpers/logger');
 
 describe('Orgs list', () => {
   beforeEach(() => {
     inquirer.prompt.mockClear();
-    inquirer.prompt.mockResolvedValue({ instanceUrl: '1891-09-28 my-alias http://test-scratch.com *' });
+    inquirer.prompt.mockResolvedValue({ choice: '1891-09-28 my-alias http://test-scratch.com *' });
     exec.mockClear();
   });
 
@@ -33,7 +33,7 @@ describe('Orgs list', () => {
     const result = await listOrgs();
 
     expect(exec).toHaveBeenCalledTimes(1);
-    expect(exec.mock.calls[0][0]).toBe('sfdx force:org:list --json');
+    expect(exec.mock.calls[0][0]).toBe('sf org list --json');
     expect(result).toMatchObject({ username: 'cap' });
   });
 
@@ -50,7 +50,7 @@ describe('Orgs list', () => {
     await listOrgs();
 
     expect(exec).toHaveBeenCalledTimes(1);
-    expect(exec.mock.calls[0][0]).toBe('sfdx force:org:list --json');
+    expect(exec.mock.calls[0][0]).toBe('sf org list --json');
     expect(inquirer.prompt).not.toHaveBeenCalled();
   });
 });

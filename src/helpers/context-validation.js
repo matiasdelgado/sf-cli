@@ -1,5 +1,7 @@
-const fs = require('fs');
+const fs = require('node:fs');
 
-module.exports = function() {
+module.exports = checkContext;
+
+function checkContext() {
   return fs.existsSync('./.sfdx');
-};
+}

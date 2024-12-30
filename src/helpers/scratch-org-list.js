@@ -1,6 +1,5 @@
 const inquirer = require('inquirer');
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+const { exec } = require('node:child_process');
 const logger = require('./logger');
 const PRODUCTION = 'PRODUCTION';
 
@@ -20,32 +19,31 @@ async function listOrgs(promptText = 'Open Scratch Org:') {
     return;
   }
 
-  const { instanceUrl } = await inquirer.prompt([
+  const { choice } = await inquirer.prompt([
     {
-      name: 'instanceUrl',
+      name: 'choice',
       message: promptText,
       type: 'list',
       choices
     }
   ]);
 
-  const index = choices.indexOf(instanceUrl);
-  const { username } = orgs[index];
-  return { instanceUrl, username };
+  const index = choices.indexOf(choice);
+  return orgs[index];
 }
 
 async function getScratchOrgs() {
-  const command = 'sfdx force:org:list --json';
+  const command = 'sf org list --json';
   const { stderr, stdout } = await exec(command);
 
-  if (stderr) {
+  if (stderr && !stderr.includes('Warning')) {
     throw new Error(stderr);
   }
 
   const data = JSON.parse(stdout);
   return [...data.result.nonScratchOrgs, ...data.result.scratchOrgs]
     .filter(org => org.alias !== PRODUCTION)
-    .map(mapOrgInfo)
+    .map(o => mapOrgInfo(o))
     .sort((a, b) => {
       if (a.expirationDate < b.expirationDate) return -1;
       if (a.expirationDate > b.expirationDate) return 1;

@@ -1,4 +1,4 @@
-const exec = require('child_process').execSync;
+const exec = require('node:child_process').execSync;
 const isSalesforceProject = require('./context-validation');
 const logger = require('./logger');
 
@@ -6,7 +6,7 @@ module.exports = handleCode;
 
 function pushToScratch() {
   try {
-    exec('sfdx force:source:push -f', { stdio: 'inherit' });
+    exec('sfdx project deploy start --ignore-conflicts', { stdio: 'inherit' });
     return 0;
   } catch (error) {
     return error.status || 1;
@@ -41,6 +41,7 @@ function handleCode({ pull, push }) {
   if (push) {
     return pushToScratch();
   }
+
   if (pull) {
     return pullFromScratch();
   }
