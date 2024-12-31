@@ -17,13 +17,12 @@ class ListCommand extends Command {
   }
 
   renderLineGenerator(expirationLength, aliasLength) {
-    const { log } = this;
-    return function (expirationDate, alias, instanceUrl, isDefaultUsername) {
+    return (expirationDate, alias, instanceUrl, isDefaultUsername) => {
       const message = `${alias.padEnd(aliasLength)} ${(expirationDate || '').padEnd(expirationLength)} ${instanceUrl}`;
       if (isDefaultUsername) {
-        log(chalk.blue(message));
+        this.log(chalk.blue(message));
       } else {
-        log(message);
+        this.log(message);
       }
     };
   }

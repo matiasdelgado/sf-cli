@@ -3,7 +3,7 @@ const { exec } = require('node:child_process');
 const { listOrgs } = require('../../src/helpers/scratch-org-list');
 
 jest.mock('node:child_process');
-jest.mock('util');
+jest.mock('node:util');
 jest.mock('../../src/helpers/logger');
 
 describe('Orgs list', () => {

@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
-const { exec } = require('node:child_process');
+const { promisify } = require('node:util');
+const exec = promisify(require('node:child_process').exec);
 const logger = require('./logger');
 const PRODUCTION = 'PRODUCTION';
 

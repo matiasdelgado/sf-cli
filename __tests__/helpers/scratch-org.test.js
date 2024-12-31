@@ -4,7 +4,7 @@ const logger = require('../../src/helpers/logger');
 
 jest.mock('node:child_process');
 jest.mock('node:fs');
-jest.mock('util');
+jest.mock('node:util');
 jest.mock('../../src/helpers/logger');
 
 describe('ScratchOrg', () => {
